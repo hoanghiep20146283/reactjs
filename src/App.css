@@ -32,7 +32,50 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+p {
+  font-size: 1.2rem;
+}
+
+button {
+  font-size: 1.2rem;
+  margin: 0.5rem;
+  background-color: aqua;
+  padding: 0.5rem;
+}
+
+input {
+  width: 2rem;
+  height: 2rem;
+  accent-color: white;
+}
+
+form {
+  display: block;
+  padding: 2rem;
+  align-items: start;
+}
+
+form>input {
+  display: block;
+  width: 100%;
+  margin: 0.5rem 0rem;
+}
+
+form>input[type=color] {
+  padding: 0;
+}
+
+form>button {
+  display: block;
+  margin: 0.5rem 0.5rem 0.5rem 0;
+}
+
+h2 {
+  margin: 0.5rem;
 }
