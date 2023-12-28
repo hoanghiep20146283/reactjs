@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import { useState, useEffect, useReducer, useRef } from 'react';
+import { Link } from 'react-router-dom';
 
 function useInput(initialValue) {
   const [value, setValue] = useState(initialValue);
@@ -18,6 +19,24 @@ function GithubUser({ name, location }) {
     <div>
       <p>Name: {name}</p>
       <p>Location: {location}</p>
+      <Link to="/app">App</Link>
+    </div>
+  )
+}
+
+export function About() {
+  return (
+    <div>
+      <h2>About us</h2>
+      <Link to="/app">App</Link>
+    </div>
+  )
+}
+
+export function Contact() {
+  return (
+    <div>
+      <h2>Contact us</h2>
     </div>
   )
 }
@@ -92,7 +111,7 @@ function App({ destructuredProperty }) {
         </>
         <>
           <h2>Fetch Data</h2>
-          <GithubUser name={data.name} location={data.avatar_url}></GithubUser>
+          <GithubUser></GithubUser>
         </>
         <a
           className="App-link"
