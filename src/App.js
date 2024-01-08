@@ -48,11 +48,11 @@ function App({ destructuredProperty }) {
   const [name, setName] = useState('Mary');
 
   // 2. Use an effect for persisting the form
-  if (numberOfRenders % 2 == 0) {
+  // if (numberOfRenders % 2 == 0) {
     useEffect(function persistForm() {
       localStorage.setItem('formData', name);
     });
-  }
+  // }
 
   // 3. Use the surname state variable
   const [surname, setSurname] = useState('Poppins');
