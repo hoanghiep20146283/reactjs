@@ -1,15 +1,14 @@
 import logo from './logo.svg';
 import './App.css';
 import { useState, useEffect, useReducer, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
+import React from 'react';
 
-function useInput(initialValue) {
+function useResettableInput(initialValue) {
   const [value, setValue] = useState(initialValue);
   return [
-    {
-      value,
-      onChange: e => setValue(e.target.value)
-    },
+    value,
+    e => setValue(e.target.value),
     () => setValue(initialValue)
   ]
 }
@@ -40,17 +39,39 @@ export function Contact() {
     </div>
   )
 }
+let numberOfRenders = 0;
 
 function App({ destructuredProperty }) {
+
+  // 1. Use the name state variable
+  console.log(`Render number: ${numberOfRenders++}`);
+  const [name, setName] = useState('Mary');
+
+  // 2. Use an effect for persisting the form
+  if (numberOfRenders % 2 == 0) {
+    useEffect(function persistForm() {
+      localStorage.setItem('formData', name);
+    });
+  }
+
+  // 3. Use the surname state variable
+  const [surname, setSurname] = useState('Poppins');
+
+  // 4. Use an effect for updating the title
+  useEffect(function updateTitle() {
+    document.title = name + ' ' + surname;
+  });
+
   const [emotion, setEmotion] = useState("happy");
   const [status, setStatus] = useState("In Progress");
   const title = useRef();
-  const [colorProps, resetColor] = useInput("#000000");
+  const [color, setColor, resetColor] = useResettableInput("#000000");
   const [checked, setChecked] = useReducer(checked => !checked, false);
   const submit = e => {
     e.preventDefault();
-    alert(`Title: ${title.current.value}, Color: ${colorProps.value}`);
+    alert(`Title: ${title.current.value}, Color: ${color}`);
     resetColor();
+    setName(String(numberOfRenders++));
     title.current.value = "";
   };
 
@@ -61,6 +82,14 @@ function App({ destructuredProperty }) {
   const [data, setData] = useState(null);
 
   useEffect(() => {
+    const spreadedObject = {
+      "spreadField": "testSpreadOperator",
+    }
+    const testObject = {
+      originalField: "test",
+      ...spreadedObject,
+    }
+    console.log(testObject);
     fetch(`https://api.github.com/users/hoanghiep20146283`)
       .then(response => response.json())
       .then(data => setData(data))
@@ -105,7 +134,7 @@ function App({ destructuredProperty }) {
         <>
           <form onSubmit={submit}>
             <input type="text" placeholder='Color title...' ref={title}></input>
-            <input type="color" {...colorProps}></input>
+            <input type="color" onChange={setColor} value={color}></input>
             <button>Submit</button>
           </form>
         </>
@@ -122,6 +151,7 @@ function App({ destructuredProperty }) {
           Learn React
         </a>
       </header>
+      <Outlet />
     </div>
   );
 }

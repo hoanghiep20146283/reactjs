@@ -10,7 +10,8 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path='/app' element={<App destructuredProperty="destructuredProperty" />} />
+        <Route path='/app' element={<App destructuredProperty="destructuredProperty" />}>
+        </Route>
         <Route path='/about' element={<About />} />
         <Route path='/contact' element={<Contact />} />
       </Routes>
