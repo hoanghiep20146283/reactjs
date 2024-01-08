@@ -6,7 +6,7 @@ interface HeaderProps { }
 const Header: FC<HeaderProps> = () => (
   <div className={styles.Header} data-testid="Header">
     <div className={styles.header} >
-      <img src={'../../assets/images/Harry_Potter_wordmark.svg'} />
+      {/* <img src={myImage} /> */}
       <div className={styles.space}></div>
       <div className={styles.description}>Harry Potter</div>
     </div>
