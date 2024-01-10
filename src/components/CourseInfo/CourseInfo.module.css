@@ -1,25 +1,21 @@
-.TopStripeWrapper {
+.CourseWrapper {
     width: 1122px;
     box-sizing: border-box;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     margin: 0 auto;
-    margin-top: 2rem
-}
-
-.ContextWrap {
-    flex: 1;
+    margin-top: 2rem;
     border: 1px solid black;
 }
 
 .TopStripe {
-    width: 274px;
+    width: 281px;
     height: 7px;
     transform: rotate(-90deg);
     flex-shrink: 0;
     position: relative;
-    top: 141px;
+    top: 136px;
     left: -140px;
     background: #333E48;
 }
@@ -36,13 +32,13 @@
     text-transform: capitalize;
     margin: 0 auto;
     width: 1122px;
-    padding-left: 4rem;
+    padding: 2rem 0rem 0 2rem;
 }
 
 .CourseInfo {
     margin: 0 auto;
     width: 1122px;
-    height: 240px;
+    height: 208px;
     flex-shrink: 0;
     fill: #FFF;
     stroke-width: 1px;
@@ -71,7 +67,7 @@
     }
 
     .CourseAuditInfor {
-        width: 340px;
+        width: 323px;
         height: 140px;
         box-sizing: border-box;
         margin-right: 4rem;
