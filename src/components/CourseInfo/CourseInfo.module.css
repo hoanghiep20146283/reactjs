@@ -1,8 +1,8 @@
 .TopStripeWrapper {
     width: 1122px;
+    box-sizing: border-box;
     display: flex;
     flex-direction: row;
-    border: 1px solid black;
     flex-wrap: wrap;
     margin: 0 auto;
     margin-top: 2rem
@@ -10,16 +10,17 @@
 
 .ContextWrap {
     flex: 1;
+    border: 1px solid black;
 }
 
 .TopStripe {
-    width: 281px;
+    width: 274px;
     height: 7px;
     transform: rotate(-90deg);
     flex-shrink: 0;
     position: relative;
-    top: 135px;
-    left: -137px;
+    top: 141px;
+    left: -140px;
     background: #333E48;
 }
 
@@ -35,6 +36,7 @@
     text-transform: capitalize;
     margin: 0 auto;
     width: 1122px;
+    padding-left: 4rem;
 }
 
 .CourseInfo {
@@ -51,9 +53,12 @@
 
     .CourseDescription {
         flex: 0 0 60%;
-
+        padding-left: 2rem;
+        
         .Description {
             width: 677px;
+            height: 140px;
+            box-sizing: border-box;
             color: var(--primary-efx-dark, #333E48);
             font-feature-settings: 'clig'off, 'liga'off;
             font-family: Open Sans;
@@ -66,11 +71,13 @@
     }
 
     .CourseAuditInfor {
-        width: 310px;
-        margin-right: 2rem;
+        width: 340px;
+        height: 140px;
+        box-sizing: border-box;
+        margin-right: 4rem;
 
         .AuditInfo {
-            width: 323px;
+            width: 310px;
             color: var(--primary-efx-dark, #333E48);
             font-feature-settings: 'clig'off, 'liga'off;
             font-family: Open Sans;
@@ -86,16 +93,17 @@
         }
 
         .ButtonList {
+            width: 323px;
             display: flex;
             flex-direction: row;
             align-items: center;
-            margin: 2rem 0 0 2rem;
+            margin: 1rem 0 0 2rem;
             justify-content: space-between;
 
             .icon {
                 display: flex;
-                width: 36px;
-                height: 38px;
+                width: 61px;
+                height: 50px;
                 justify-content: center;
                 align-items: center;
                 border-radius: 4px;
