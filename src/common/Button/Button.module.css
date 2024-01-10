@@ -1,33 +1,31 @@
 .Button {
-  align-items: center;
-  display: flex;
-
-  button {
-    display: flex;
-    min-width: 148px;
-    height: 50px;
-    padding: 0px 20px;
-    box-sizing: border-box;
-    justify-content: center;
     align-items: center;
-    gap: 10px;
-    flex: 1 1 auto;
-    border-radius: 4px;
-    background: var(--primary-blue, #007298);
-    color: var(--white, #fff);
-    background: var(--primary-blue, #007298);
-    text-align: center;
-    font-feature-settings:
-      "clig" off,
-      "liga" off;
+    display: flex;
 
-    /* Button/caps */
-    font-family: Open Sans;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 24px;
-    /* 150% */
-    text-transform: uppercase;
-  }
+    button {
+        display: flex;
+        min-width: 148px;
+        height: 50px;
+        padding: 0px 20px;
+        box-sizing: border-box;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        flex: 1 1 auto;
+        border-radius: 4px;
+        background: var(--primary-blue, #007298);
+        color: var(--white, #fff);
+        text-align: center;
+        font-feature-settings:
+            "clig" off,
+            "liga" off;
+
+        font-family: Open Sans;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 700;
+        text-transform: uppercase;
+        line-height: 24px;
+        word-wrap: break-word;
+    }
 }

@@ -9,4 +9,5 @@
     align-items: center;
     display: inline-flex;
     padding-left: 10px;
+    box-sizing: border-box;
 }
