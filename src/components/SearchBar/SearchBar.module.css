@@ -1,31 +1,31 @@
 .SearchBar {
-    width: 1122px;
-    padding: 2rem 0 0 0;
-    background: #F7F7F7;
-    margin: 0 auto;
+  width: 1122px;
+  padding: 2rem 0 0 0;
+  background: #f7f7f7;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  align-self: center;
+  justify-content: space-between;
+
+  button {
+    margin-left: 20px;
+  }
+
+  input {
     display: flex;
-    flex-direction: row;
-    align-self: center;
-    justify-content: space-between;
+    width: 400px;
+    height: 50px;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    border-radius: 4px;
+    border: 1px solid var(--basic-borders, #cfcfcf);
+    background: var(--white, #fff);
+  }
 
-    button {
-        margin-left: 20px;
-    }
-
-    input {
-        display: flex;
-        width: 366px;
-        height: 48px;
-        padding: 0 16px;
-        justify-content: center;
-        align-items: center;
-        flex-shrink: 0;
-        border-radius: 4px;
-        border: 1px solid var(--basic-borders, #CFCFCF);
-        background: var(--white, #FFF);
-    }
-
-    .Space {
-        flex: 1;
-    }
+  .Space {
+    flex: 1;
+  }
 }

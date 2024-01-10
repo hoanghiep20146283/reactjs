@@ -6,7 +6,6 @@ import SearchBar from '../SearchBar/SearchBar';
 
 const Courses: FC = () => (
 	<div className={styles.Courses} data-testid='Courses'>
-		<Header />
 		<SearchBar />
 		<CourseInfo />
 		<CourseInfo />
