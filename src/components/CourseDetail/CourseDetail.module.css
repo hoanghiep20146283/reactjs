@@ -1,0 +1,60 @@
+.CourseDetail {
+    width: 1440px;
+    height: 1176px;
+    flex-shrink: 0;
+    background: #F7F7F7;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
+    .MainTitle {
+        width: 1125px;
+        color: #333E48;
+        font-size: 32px;
+        font-family: Open Sans;
+        font-weight: 700;
+        text-transform: capitalize;
+        line-height: 40px;
+        word-wrap: break-word;
+    }
+
+    .CourseWrapper {
+        width: 1125px;
+        box-sizing: border-box;
+        height: 375px;
+        background: white;
+        border-radius: 4px;
+        border: 1px #CFCFCF solid;
+        display: flex;
+        flex-direction: row;
+        padding: 2.3rem 0 0 5rem;
+
+        .Description {
+            width: 487px;
+            margin-right: 2rem;
+
+            p:nth-child(2) {
+                text-align: justify;
+            }
+
+            .Title {
+                color: #333E48;
+                font-size: 20px;
+                font-family: Open Sans;
+                font-weight: 700;
+                line-height: 20px;
+                word-wrap: break-word;
+            }
+        }
+    }
+
+    .ButtonWrapper {
+        width: 1125px;
+        box-sizing: border-box;
+        background: white;
+        display: flex;
+        justify-content: flex-end;
+        padding: 3rem 0 0 0;
+    }
+}

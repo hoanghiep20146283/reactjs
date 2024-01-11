@@ -5,6 +5,8 @@ import App from './App.tsx';
 import Login from './components/Login/Login.tsx';
 import Registration from './components/Registration/Registration.tsx';
 import EmptyCourseList from './components/EmptyCourseList/EmptyCourseList.tsx';
+import CourseUpdate from './components/CourseUpdate/CourseUpdate.tsx';
+import CourseDetail from './components/CourseDetail/CourseDetail.tsx';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -16,6 +18,8 @@ root.render(
 					<Route path='login' element={<Login />} />
 					<Route path='registration' element={<Registration />} />
 					<Route path='empty' element={<EmptyCourseList />} />
+					<Route path='edit' element={<CourseUpdate />} />
+					<Route path='detail' element={<CourseDetail />} />
 				</Route>
 			</Routes>
 		</BrowserRouter>
