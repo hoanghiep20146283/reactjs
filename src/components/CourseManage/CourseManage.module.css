@@ -157,7 +157,7 @@
             flex-direction: column;
             justify-content: start;
             align-items: center;
-            width: 100%;
+            width: 40%;
         }
 
         .AuthorGroup {
@@ -180,7 +180,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 25px;
+            height: 30px;
             width: 131px;
 
             img {
