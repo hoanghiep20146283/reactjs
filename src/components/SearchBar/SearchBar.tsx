@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import styles from './SearchBar.module.css';
-import Button from '../../common/Button/Button';
+import {Button} from '../../common/Button/Button';
 import InputText from '../../common/InputText/InputText';
 
 const SearchBar: FC = () => (

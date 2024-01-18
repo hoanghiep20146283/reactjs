@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import styles from './EmptyCourseList.module.css';
 import InputText from '../../common/InputText/InputText';
-import Button from '../../common/Button/Button';
+import {Button} from '../../common/Button/Button';
 
 const EmptyCourseList: FC = () => (
 	<div className={styles.EmptyCourseList} data-testid='EmptyCourseList'>

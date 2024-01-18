@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import styles from './CourseUpdate.module.css';
 import InputText from '../../common/InputText/InputText';
-import Button from '../../common/Button/Button';
+import {Button} from '../../common/Button/Button';
 
 const CourseUpdate: FC = () => (
   <div data-testid='CourseUpdate' className={styles.CourseUpdate}>
@@ -18,7 +18,7 @@ const CourseUpdate: FC = () => (
         <InputText content='Type your Duration..' type='text' />
         <p><b>00:00</b> hours</p>
       </div>
-      <div className={styles.MainTitle}>Author 2</div>
+      <div className={styles.MainTitle}>Author</div>
       <div className={styles.Title}>Author Name</div>
       <div className={styles.AuthorGroup}>
         <InputText content='Type your Author Name..' type='text' />

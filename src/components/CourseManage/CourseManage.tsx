@@ -1,7 +1,18 @@
 import React, { FC } from 'react';
 import styles from './CourseManage.module.css';
 import InputText from '../../common/InputText/InputText';
-import Button from '../../common/Button/Button';
+import Button from '@mui/material/Button';
+import {Button as MyButton} from "../../common/Button/Button";
+import injectTapEventPlugin from 'react-tap-event-plugin';
+
+const styleObj = {
+  "&:hover": {
+    backgroundColor: "red"
+  },
+  "&:active": {
+    backgroundColor: "blue"
+  }
+};
 
 const CourseManage: FC = () => (
   <div data-testid='CourseManage' className={styles.CourseManage}>
@@ -24,7 +35,7 @@ const CourseManage: FC = () => (
           <div className={styles.Title}>Author Name</div>
           <div className={styles.AuthorGroup}>
             <InputText content='Type your Author Name..' type='text' />
-            <Button content='Create Author' />
+            <MyButton content='Create Author' />
           </div>
           <p className={styles.MainTitle}>Author List</p>
           <div className={styles.TextWrapper}>
@@ -46,10 +57,15 @@ const CourseManage: FC = () => (
     </div>
     <div className={styles.ButtonGroup}>
       <div className={styles.ButtonWrapper}>
-        <Button content='Cancel' />
+        <MyButton content='Cancel' />
       </div>
       <div className={styles.ButtonWrapper}>
-        <Button content='Create Course' />
+        <MyButton content='Create Course' />
+      </div>
+      <div>
+        <Button disableRipple sx={styleObj} variant="text">
+          MaterialUI
+        </Button>
       </div>
     </div>
   </div>

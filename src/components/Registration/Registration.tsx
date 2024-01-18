@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import styles from './Registration.module.css';
 import InputText from '../../common/InputText/InputText';
-import Button from '../../common/Button/Button';
+import {Button} from '../../common/Button/Button';
 
 const Registration: FC = () => (
   <div className={styles.Registration} data-testid='Registration'>

@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import styles from './CourseDetail.module.css';
-import Button from '../../common/Button/Button';
+import {Button} from '../../common/Button/Button';
 
 const CourseDetail: FC = () => (
   <div className={styles.CourseDetail} data-testid='CourseDetail'>

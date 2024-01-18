@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import styles from './CourseInfo.module.css';
-import Button from '../../common/Button/Button';
+import {Button} from '../../common/Button/Button';
 
 const CourseInfo: FC = () => (
 	<>

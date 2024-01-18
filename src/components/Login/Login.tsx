@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import styles from './Login.module.css';
 import InputText from '../../common/InputText/InputText';
-import Button from '../../common/Button/Button';
+import {Button} from '../../common/Button/Button';
 
 const Login: FC = () => (
   <div className={styles.Login} data-testid='Login'>

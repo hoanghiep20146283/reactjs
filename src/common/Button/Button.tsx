@@ -5,10 +5,8 @@ interface ButtonProps {
 	content: string;
 }
 
-const Button: FC<ButtonProps> = ({ content }) => (
+export const Button: FC<ButtonProps> = ({ content }) => (
 	<div className={styles.Button} data-testid='Button'>
 		<button type='button'>{content}</button>
 	</div>
 );
-
-export default Button;
