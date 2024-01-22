@@ -1,38 +1,82 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import styles from './CourseDetail.module.css';
-import Button from '../../common/Button/Button';
+import { Link, useParams } from 'react-router-dom';
 
-const CourseDetail: FC = () => (
-  <div className={styles.CourseDetail} data-testid='CourseDetail'>
-    <p className={styles.MainTitle}>JavaScript</p>
-    <div className={styles.CourseWrapper}>
-      <div className={styles.Description}>
-        <p className={styles.Title}>Description:</p>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+interface Course {
+  title: string;
+  description: string;
+  creationDate: string;
+  duration: number;
+  authors: string[];
+  id: string;
+}
+
+interface CourseResponse {
+  successful: boolean,
+  result: Course,
+}
+
+const formatDuration = (durationInMinutes: number|undefined): string => {
+  if(durationInMinutes === undefined) {
+    return "Unknown"
+  } else if (durationInMinutes === 60) {
+    return '1 hour';
+  } else if (durationInMinutes > 60) {
+    const hours = Math.floor(durationInMinutes / 60);
+    return `${hours} hours`;
+  } else {
+    return `${durationInMinutes} minutes`;
+  }
+};
+
+const CourseDetail: FC = () => {
+  const params = useParams();
+  const [courseDetail, setCourseDetail] = useState<Course>();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const courseResponse = await fetch(`http://localhost:4000/courses/${params.courseId}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      const courseDetailResponse: CourseResponse = await courseResponse.json();
+      setCourseDetail(courseDetailResponse.result);
+    }
+    fetchData();
+  }, []);
+  return (
+    <div className={styles.CourseDetail} data-testid='CourseDetail'>
+      <p className={styles.MainTitle}>{courseDetail?.title}</p>
+      <div className={styles.CourseWrapper}>
+        <div className={styles.Description}>
+          <p className={styles.Title}>Description:</p>
+          <p>{courseDetail?.description}</p>
+        </div>
+        <div className={styles.Divider}></div>
+        <div className={styles.Info}>
+          <div className={styles.Space}></div>
+          <div className={styles.InfoItem}>
+            <p className={styles.InfoName}>ID:</p>
+            <p className={styles.InfoValue}>{courseDetail?.id}</p>
+          </div>
+          <div className={styles.InfoItem}>
+            <p className={styles.InfoName}>Duration:</p>
+            <p className={styles.DurationInfo}>{formatDuration(courseDetail?.duration)}</p>
+          </div><div className={styles.InfoItem}>
+            <p className={styles.InfoName}>Created:</p>
+            <p className={styles.InfoValue}>{courseDetail?.creationDate}</p>
+          </div><div className={styles.InfoItem}>
+            <p className={styles.InfoName}>Authors: </p>
+            <p className={styles.InfoValue}>{courseDetail?.authors}</p>
+          </div>
+        </div>
       </div>
-      <div className={styles.Divider}></div>
-      <div className={styles.Info}>
-        <div className={styles.Space}></div>
-        <div className={styles.InfoItem}>
-          <p className={styles.InfoName}>ID:</p>
-          <p className={styles.InfoValue}>231j3j-b34g5-b345m</p>
-        </div>
-        <div className={styles.InfoItem}>
-          <p className={styles.InfoName}>Duration:</p>
-          <p className={styles.InfoValue}>23:35 hours</p>
-        </div><div className={styles.InfoItem}>
-          <p className={styles.InfoName}>Created:</p>
-          <p className={styles.InfoValue}>01.01.2023</p>
-        </div><div className={styles.InfoItem}>
-          <p className={styles.InfoName}>Authors: </p>
-          <p className={styles.InfoValue}>Anna Sidorenko, Valentina Larina</p>
-        </div>
+      <div className={styles.ButtonWrapper}>
+        <Link to='/courses'>Back</Link>
       </div>
     </div>
-    <div className={styles.ButtonWrapper}>
-      <Button content='Back' />
-    </div>
-  </div>
-);
-
+  );
+}
 export default CourseDetail;

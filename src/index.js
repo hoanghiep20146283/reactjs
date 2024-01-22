@@ -21,7 +21,7 @@ root.render(
 					<Route path='registration' element={<Registration />} />
 					<Route path='empty' element={<EmptyCourseList />} />
 					<Route path='edit' element={<CourseManage />} />
-					<Route path='detail' element={<CourseDetail />} />
+					<Route path="/courses/:courseId" element={<CourseDetail />} />
 				</Route>
 			</Routes>
 		</BrowserRouter>

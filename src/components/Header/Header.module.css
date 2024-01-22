@@ -54,5 +54,17 @@
     flex-shrink: 0;
     border-radius: 4px;
     background: var(--primary-blue, #007298);
+    color: var(--white, #FFF);
+    text-align: center;
+    font-feature-settings: 'clig' off, 'liga' off;
+
+    /* Button/caps */
+    font-family: "Open Sans";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px;
+    /* 150% */
+    text-transform: uppercase;
   }
 }

@@ -82,7 +82,8 @@
                     text-transform: capitalize;
                 }
 
-                .InfoValue {
+                .InfoValue,
+                .DurationInfo {
                     color: var(--primary-efx-dark, #333E48);
                     font-feature-settings: 'clig' off, 'liga' off;
                     font-family: Open Sans;
@@ -92,6 +93,10 @@
                     line-height: 32px;
                     /* 125% */
                 }
+
+                .DurationInfo::first-word {
+                    font-weight: bold;
+                }
             }
         }
     }
@@ -99,9 +104,34 @@
     .ButtonWrapper {
         width: 1125px;
         box-sizing: border-box;
-        background: white;
         display: flex;
         justify-content: flex-end;
         padding: 3rem 0 0 0;
+
+        a {
+            display: flex;
+            width: 185px;
+            height: 50px;
+            box-sizing: border-box;
+            padding: 13px 36px;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+            border-radius: 4px;
+            background: var(--primary-blue, #007298);
+            color: var(--white, #FFF);
+            text-align: center;
+            font-feature-settings: 'clig' off, 'liga' off;
+            text-decoration: none;
+            /* Button/caps */
+            font-family: "Open Sans";
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 24px;
+            /* 150% */
+            text-transform: uppercase;
+        }
     }
 }
