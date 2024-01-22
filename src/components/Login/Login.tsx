@@ -3,6 +3,7 @@ import styles from './Login.module.css';
 import InputText from '../../common/InputText/InputText';
 import Button from '../../common/Button/Button';
 import { FormProvider, useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
 
 const Login: FC = () => {
   const methods = useForm({
@@ -25,9 +26,7 @@ const Login: FC = () => {
             <InputText content='Type your Password..' type='password' name='passoword' />
             <Button content='Login' type='submit' />
             <p>
-              If you don't have an account you may
-              <br />
-              <b>Registration</b>
+              If you have an account you may <Link to={"/registration"}>Registration</Link>
             </p>
           </form>
         </FormProvider>

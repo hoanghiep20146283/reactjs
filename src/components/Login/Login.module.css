@@ -32,7 +32,7 @@
         border: 1px #CFCFCF solid;
         display: flex;
         flex-direction: column;
-        padding: 95px 0 0 148px;
+        padding: 64px 0 57px 148px;
 
         input {
             width: 286px;
@@ -60,6 +60,11 @@
             font-family: Open Sans;
             line-height: 20px;
             word-wrap: break-word;
+            a {
+                text-decoration: none;
+                color: black;
+                font-weight: bold;
+            }
         }
 
         .Title {
