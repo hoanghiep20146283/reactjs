@@ -9,20 +9,20 @@ const CourseUpdate: FC = () => (
     <div className={styles.RegistrationForm}>
       <div className={styles.MainTitle}>Main Info</div>
       <div className={styles.Title}>Title</div>
-      <InputText content='Type your Title..' type='text' />
+      <InputText content='Type your Title..' type='text' name='title' />
       <div className={styles.Title}>Description</div>
-      <InputText content='Type your Description..' type='textarea' />
+      <InputText content='Type your Description..' type='textarea' name='description' />
       <div className={styles.MainTitle}>Duration</div>
       <div className={styles.Title}>Duration</div>
       <div className={styles.DurationGroup}>
-        <InputText content='Type your Duration..' type='text' />
+        <InputText content='Type your Duration..' type='text' name='duration' />
         <p><b>00:00</b> hours</p>
       </div>
       <div className={styles.MainTitle}>Author 2</div>
       <div className={styles.Title}>Author Name</div>
       <div className={styles.AuthorGroup}>
-        <InputText content='Type your Author Name..' type='text' />
-        <Button content='Create Author' />
+        <InputText content='Type your Author Name..' type='text' name='author' />
+        <Button content='Create Author' type='submit' />
       </div>
       <p>Author List</p>
       <div className={styles.TextWrapper}>
@@ -36,10 +36,10 @@ const CourseUpdate: FC = () => (
     </div>
     <div className={styles.ButtonGroup}>
       <div className={styles.ButtonWrapper}>
-        <Button content='Cancel' />
+        <Button content='Cancel' type='reset' />
       </div>
       <div className={styles.ButtonWrapper}>
-        <Button content='Create Course' />
+        <Button content='Create Course' type='submit' />
       </div>
     </div>
   </div>

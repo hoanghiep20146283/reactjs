@@ -5,7 +5,6 @@ import App from './App.tsx';
 import Login from './components/Login/Login.tsx';
 import Registration from './components/Registration/Registration.tsx';
 import EmptyCourseList from './components/EmptyCourseList/EmptyCourseList.tsx';
-import CourseUpdate from './components/CourseUpdate/CourseUpdate.tsx';
 import CourseDetail from './components/CourseDetail/CourseDetail.tsx';
 import CourseManage from './components/CourseManage/CourseManage.tsx';
 import Courses from './components/Courses/Courses.tsx';

@@ -3,11 +3,12 @@ import styles from './Button.module.css';
 
 interface ButtonProps {
 	content: string;
+	type: "submit" | "reset" | "button";
 }
 
-const Button: FC<ButtonProps> = ({ content }) => (
+const Button: FC<ButtonProps> = ({ content, type }) => (
 	<div className={styles.Button} data-testid='Button'>
-		<button type='button'>{content}</button>
+		<button type={type}>{content}</button>
 	</div>
 );
 
