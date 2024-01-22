@@ -11,3 +11,14 @@
     padding-left: 10px;
     box-sizing: border-box;
 }
+
+input + div.warningSection {
+    position: relative;
+    display: flex;
+}
+
+input + div.warningSection > p.warningMessage  {
+    position: absolute;
+    top: -40px;
+    color: red;
+}

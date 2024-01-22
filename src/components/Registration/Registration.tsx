@@ -33,7 +33,7 @@ const Registration: FC = () => {
     }
   };
 
-  console.log(`formState name errors is: ${JSON.stringify(methods.formState.errors.password?.message)}`);
+  console.log(`[Registration] formState name errors is: ${JSON.stringify(methods.formState.errors.name?.message)}`);
 
   return (
     <div className={styles.Registration} data-testid='Registration'>

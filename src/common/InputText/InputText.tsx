@@ -15,12 +15,29 @@ const InputText = forwardRef(function InputText(props: InputTextProps, forwarded
   const { register, formState } = useFormContext();
   const isInvalid = isFormInvalid(formState.errors)
   const [inputError, setInputError] = useState<Record<string, any>>();
+
   useEffect(() => {
     setInputError(findInputError(formState.errors, name));
+    console.log(`[InputText] formState name errors is: ${JSON.stringify(formState.errors.name?.message)}, inputError: ${inputError}`);
   }, [formState]);
 
   return (
     <>
+      <input required type={type} className={styles.InputText} data-testid='InputText' placeholder={content}
+        {...register(name, {
+          required: {
+            value: true,
+            message: 'required',
+          },
+          validate: (value, formValue) => {
+            console.log(`Validating: ${value}, formValue: ${formValue}`);
+            if (value === "") {
+            } else if(value.trim() === "")  {
+              return "Value is not blank";
+            }
+            return true;
+          }
+        })} />
       <AnimatePresence mode="wait" initial={false}>
         {isInvalid && (
           <InputError
@@ -29,28 +46,15 @@ const InputText = forwardRef(function InputText(props: InputTextProps, forwarded
           />
         )}
       </AnimatePresence>
-      <input required type={type} className={styles.InputText} data-testid='InputText' placeholder={content}
-        {...register(name, {
-          required: {
-            value: true,
-            message: 'required',
-          },
-          min: {
-            value: 10,
-            message: "Minimum is 10 characters",
-          }
-        })} />
     </>
   );
 });
 
 const InputError = ({ message }) => {
   return (
-    <motion.p
-      className="flex items-center gap-1 px-2 font-semibold text-red-500 bg-red-100 rounded-md"
-      {...framer_error}>
-      {message}
-    </motion.p>
+    <div className={styles.warningSection}>
+      <p className={styles.warningMessage}>{message}</p>
+    </div>
   )
 }
 
