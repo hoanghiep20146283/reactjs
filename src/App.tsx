@@ -9,6 +9,8 @@ function App() {
 		console.log(`location.pathname: ${location.pathname}`);
 		if (token && (location.pathname === '/' || location.pathname === '')) {
 			navigate('/courses');
+		} else {
+			navigate('/login');
 		}
 	}, []);
 	const token = localStorage.getItem('bearerToken');

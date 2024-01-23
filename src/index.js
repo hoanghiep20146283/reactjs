@@ -22,7 +22,7 @@ root.render(
 					<Route path='empty' element={<EmptyCourseList />} />
 					<Route path='/courses/add' element={<CourseManage />} />
 					<Route path='/courses/:courseId' element={<CourseDetail />} />\
-					<Route path="*" element={<Navigate to="/" />} />
+					<Route path='*' element={<Navigate to='/' />} />
 				</Route>
 			</Routes>
 		</BrowserRouter>
