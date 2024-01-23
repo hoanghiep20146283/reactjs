@@ -32,7 +32,8 @@ const InputText = forwardRef(function InputText(props: InputTextProps, forwarded
           validate: (value, formValue) => {
             console.log(`Validating: ${value}, formValue: ${formValue}`);
             if (value === "") {
-            } else if(value.trim() === "")  {
+              return "Value is not empty";
+            } else if (value.trim() === "") {
               return "Value is not blank";
             }
             return true;
