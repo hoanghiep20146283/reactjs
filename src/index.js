@@ -8,7 +8,7 @@ import EmptyCourseList from './components/EmptyCourseList/EmptyCourseList.tsx';
 import CourseDetail from './components/CourseDetail/CourseDetail.tsx';
 import CourseManage from './components/CourseManage/CourseManage.tsx';
 import Courses from './components/Courses/Courses.tsx';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -16,12 +16,13 @@ root.render(
 		<BrowserRouter>
 			<Routes>
 				<Route path='/' element={<App />}>
-					<Route path='/list' element={<Courses />} />
+					<Route path='/courses' element={<Courses />} />
 					<Route path='login' element={<Login />} />
 					<Route path='registration' element={<Registration />} />
 					<Route path='empty' element={<EmptyCourseList />} />
-					<Route path='edit' element={<CourseManage />} />
-					<Route path="/courses/:courseId" element={<CourseDetail />} />
+					<Route path='/courses/add' element={<CourseManage />} />
+					<Route path='/courses/:courseId' element={<CourseDetail />} />\
+					<Route path="*" element={<Navigate to="/" />} />
 				</Route>
 			</Routes>
 		</BrowserRouter>

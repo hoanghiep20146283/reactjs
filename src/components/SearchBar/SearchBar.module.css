@@ -28,4 +28,34 @@
   .Space {
     flex: 1;
   }
+
+  .AddNewCourse {
+    display: flex;
+    box-sizing: border-box;
+    min-width: 183px;
+    height: 50px;
+    padding: 13px 36px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+    border-radius: 4px;
+    background: var(--primary-blue, #007298);
+
+    a {
+      color: var(--white, #FFF);
+      text-align: center;
+      font-feature-settings: 'clig' off, 'liga' off;
+
+      /* Button/caps */
+      font-family: "Open Sans";
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 24px;
+      /* 150% */
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+  }
 }

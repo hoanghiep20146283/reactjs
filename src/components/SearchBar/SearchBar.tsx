@@ -3,6 +3,7 @@ import styles from './SearchBar.module.css';
 import Button from '../../common/Button/Button';
 import InputText from '../../common/InputText/InputText';
 import { FormProvider, useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
 
 const SearchBar: FC = () => {
 	const searchRef = useRef<HTMLInputElement>(null);
@@ -20,7 +21,9 @@ const SearchBar: FC = () => {
 			</FormProvider>
 			<Button content='SEARCH' type='submit' />
 			<div className={styles.Space}></div>
-			<Button content='ADD NEW COURSE' type='submit' />
+			<div className={styles.AddNewCourse}>
+				<Link to={"/courses/add"}>ADD NEW COURSE</Link>
+			</div>
 		</div>
 	)
 };

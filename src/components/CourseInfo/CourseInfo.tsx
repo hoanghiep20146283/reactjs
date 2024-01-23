@@ -34,7 +34,7 @@ const CourseInfo: FC = () => (
 						<b>Created:</b> 20.03.2012
 					</p>
 					<div className={styles.ButtonList}>
-						<Button content='Show Courses'></Button>
+						<Button content='Show Courses' type='button'></Button>
 						<div className={styles.icon}>
 							<img src={'../assets/images/Icon-Trash.png'} />
 						</div>
