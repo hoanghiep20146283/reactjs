@@ -1,15 +1,7 @@
 import React, { FC, useEffect, useState } from 'react';
 import styles from './CourseDetail.module.css';
 import { Link, useParams } from 'react-router-dom';
-
-interface Course {
-  title: string;
-  description: string;
-  creationDate: string;
-  duration: number;
-  authors: string[];
-  id: string;
-}
+import { Course } from '@/store/courses/types';
 
 interface CourseResponse {
   successful: boolean,

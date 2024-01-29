@@ -9,22 +9,26 @@ import CourseDetail from './components/CourseDetail/CourseDetail.tsx';
 import CourseManage from './components/CourseManage/CourseManage.tsx';
 import Courses from './components/Courses/Courses.tsx';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import store from './store/courses/reducer.ts';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-	<React.StrictMode>
-		<BrowserRouter>
-			<Routes>
-				<Route path='/' element={<App />}>
-					<Route path='/courses' element={<Courses />} />
-					<Route path='login' element={<Login />} />
-					<Route path='registration' element={<Registration />} />
-					<Route path='empty' element={<EmptyCourseList />} />
-					<Route path='/courses/add' element={<CourseManage />} />
-					<Route path='/courses/:courseId' element={<CourseDetail />} />\
-					<Route path='*' element={<Navigate to='/' />} />
-				</Route>
-			</Routes>
-		</BrowserRouter>
-	</React.StrictMode>
+	<Provider store={store}>
+		<React.StrictMode>
+			<BrowserRouter>
+				<Routes>
+					<Route path='/' element={<App />}>
+						<Route path='/courses' element={<Courses />} />
+						<Route path='login' element={<Login />} />
+						<Route path='registration' element={<Registration />} />
+						<Route path='empty' element={<EmptyCourseList />} />
+						<Route path='/courses/add' element={<CourseManage />} />
+						<Route path='/courses/:courseId' element={<CourseDetail />} />\
+						<Route path='*' element={<Navigate to='/' />} />
+					</Route>
+				</Routes>
+			</BrowserRouter>
+		</React.StrictMode>
+	</Provider>
 );
