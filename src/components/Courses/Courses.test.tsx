@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
-import Courses from './Courses';
+import Courses from './Courses.1';
 
 describe('<Courses />', () => {
   test('it should mount', () => {

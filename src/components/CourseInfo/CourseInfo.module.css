@@ -104,6 +104,7 @@
 
       .icon {
         display: flex;
+        cursor: pointer;
         width: 61px;
         height: 50px;
         justify-content: center;
@@ -117,6 +118,10 @@
           position: absolute;
           z-index: 110;
         }
+      }
+
+      .icon:active {
+        box-shadow: 0 0 5px -1px rgba(0, 0, 0, 0.6);
       }
 
       .ShowButton {

@@ -10,7 +10,7 @@ import CourseManage from './components/CourseManage/CourseManage.tsx';
 import Courses from './components/Courses/Courses.tsx';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import store from './store/courses/reducer.ts';
+import { store } from './store/index.ts';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
