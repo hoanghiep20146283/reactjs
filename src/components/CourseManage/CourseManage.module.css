@@ -8,6 +8,10 @@
     align-items: center;
     justify-content: flex-start;
 
+    .formHorizontal {
+        display: flex;
+    }
+
     .PageTitle {
         color: #333E48;
         width: 1104px;
@@ -171,7 +175,7 @@
             }
 
             button {
-                max-width: 185px;
+                width: 185px;
                 margin: 0;
             }
         }

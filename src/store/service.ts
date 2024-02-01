@@ -1,4 +1,5 @@
 import { CoursesActionTypes } from './courses/types';
+import { AuthorsActionTypes } from './authors/types';
 
 const fetchCoursesRequest = () => ({
 	type: CoursesActionTypes.SAVE_COURSES,
@@ -11,6 +12,11 @@ const fetchCoursesSuccess = (courses) => ({
 
 export const fetchCoursesFailure = (error) => ({
 	type: CoursesActionTypes.SAVE_COURSES,
+	payload: error,
+});
+
+export const fetchAuthorsFailure = (error) => ({
+	type: AuthorsActionTypes.SAVE_AUTHORS,
 	payload: error,
 });
 
@@ -65,5 +71,23 @@ export const fetchCourses = async (dispatch, action) => {
 		});
 	} catch (error) {
 		dispatch(fetchCoursesFailure(error));
+	}
+};
+
+export const fetchAuthors = async (dispatch, action) => {
+	try {
+		const response = await fetch('http://localhost:4000/authors/all', {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+		});
+		const authorResponses = await response.json();
+		dispatch({
+			type: AuthorsActionTypes.SAVE_AUTHORS,
+			payload: authorResponses.result,
+		});
+	} catch (error) {
+		dispatch(fetchAuthorsFailure(error));
 	}
 };
