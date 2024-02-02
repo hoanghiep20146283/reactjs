@@ -1,22 +1,24 @@
-import * as types from './types';
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { Course } from './types';
 
-const coursesInitialState = [] as types.Course[];
+export const courseApi = createApi({
+	reducerPath: 'courses',
+	baseQuery: fetchBaseQuery({
+		baseUrl: 'http://localhost:4000/courses/',
+		prepareHeaders: (headers) => {
+			headers.set(
+				'Authorization',
+				`Bearer ${localStorage.getItem('bearerToken')}`
+			);
+			return headers;
+		},
+	}),
 
-export const coursesReducer = (
-	state = coursesInitialState,
-	action: types.CoursesAction
-) => {
-	switch (action.type) {
-		case types.CoursesActionTypes.SAVE_COURSES:
-			return action.payload;
+	endpoints: (builder) => ({
+		getAllCourses: builder.query<Course[], string>({
+			query: (input) => 'all',
+		}),
+	}),
+});
 
-		case types.CoursesActionTypes.ADD_COURSE:
-			return [...state, action.payload];
-
-		case types.CoursesActionTypes.DELETE_COURSE:
-			return [...state.filter((course) => course.id !== action.payload)];
-
-		default:
-			return state;
-	}
-};
+export const { useGetAllCoursesQuery } = courseApi;

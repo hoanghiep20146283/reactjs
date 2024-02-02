@@ -21,7 +21,7 @@ export const fetchAuthorsFailure = (error) => ({
 });
 
 export const deleteCourses = function (courseId: string) {
-	return async (dispatch, action) => {
+	return async (dispatch) => {
 		try {
 			const token = localStorage.getItem('bearerToken');
 
@@ -56,7 +56,7 @@ export const deleteCourses = function (courseId: string) {
 	};
 };
 
-export const fetchCourses = async (dispatch, action) => {
+export const fetchCourses = async (dispatch) => {
 	try {
 		const response = await fetch('http://localhost:4000/courses/all', {
 			method: 'GET',
