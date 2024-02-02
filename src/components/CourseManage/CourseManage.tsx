@@ -8,8 +8,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchAuthors } from '../../store/service';
 import { RootState } from '../../store/rootReducer';
 import { useNavigate } from 'react-router-dom';
-import { CoursesActionTypes } from '../../store/courses/types';
-import { AuthorsActionTypes } from '@/store/authors/types';
+import { addNewCourseAction } from '../../store/courses/action';
+import { Course, CourseResponse, CoursesAction } from '../../store/courses/types';
+import { selectedAuthorsSlice } from '../../store/authors/reducer';
+import { UnknownAction } from 'redux';
+
 type FormValues = {
   title: string;
   description: string;
@@ -27,20 +30,20 @@ const CourseManage: FC = () => {
   }, [dispatch]);
 
   const authors = useSelector((state: RootState) => state.authors);
-  const [selectedAuthors, setSelectedAuthors] = useState<string[]>([]);
+  const selectedAuthors = useSelector((state: RootState) => state.selectedAuthors);
 
-  const addAuthor = async author => {
-    const selectedAuthor = authors.find(element => element.name === author.name);
-    if (selectedAuthor) {
-      setSelectedAuthors([...selectedAuthors, selectedAuthor.id])
-      return;
+  const handleAddAuthor = async selectedAuthor => {
+    const matchedAuthor = authors.find(author => author.name === selectedAuthor.name)
+    if(matchedAuthor){
+      store.dispatch(selectedAuthorsSlice.actions.addAuthor(matchedAuthor.id));
+    } else {
+      alert(`There is no author name: ${selectedAuthor.name}`);
     }
-    alert('Author not exist!');
   }
 
   const onSubmit = async course => {
-    course.duration = parseInt(course.duration);
     course.authors = selectedAuthors;
+    course.duration = parseInt(course.duration);
     const token = localStorage.getItem('bearerToken');
 
     if (!token) {
@@ -57,9 +60,9 @@ const CourseManage: FC = () => {
       },
     });
 
-    const courseResponse = await response.json();
+    const courseResponse: CourseResponse = await response.json();
     if (courseResponse && courseResponse.result) {
-      dispatch({ type: CoursesActionTypes.ADD_COURSE, payload: courseResponse.result })
+      dispatch(addNewCourseAction(courseResponse.result))
       navigate('/courses');
     } else {
       alert(JSON.stringify(courseResponse));
@@ -95,7 +98,7 @@ const CourseManage: FC = () => {
             <div className={styles.Title}>Author Name</div>
             <div className={styles.AuthorGroup}>
               <FormProvider {...authorMethods}>
-                <form onSubmit={authorMethods.handleSubmit(addAuthor)} className={styles.formHorizontal} noValidate>
+                <form onSubmit={authorMethods.handleSubmit(handleAddAuthor)} className={styles.formHorizontal} noValidate>
                   <InputText content='Type your Author Name..' type='text' name='name' />
                   <Button content='Create Author' type='submit' />
                 </form>

@@ -1,4 +1,4 @@
-import React, { FC, useRef } from 'react';
+import React, { FC } from 'react';
 import styles from './Registration.module.css';
 import InputText from '../../common/InputText/InputText';
 import Button from '../../common/Button/Button';

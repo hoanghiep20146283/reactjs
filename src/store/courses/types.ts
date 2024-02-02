@@ -28,4 +28,8 @@ interface DeleteCourse {
 	payload: string;
 }
 
+export interface CourseResponse {
+	result: Course;
+}
+
 export type CoursesAction = SaveCourses | AddCourse | DeleteCourse;

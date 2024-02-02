@@ -1,4 +1,7 @@
+import { createSlice } from '@reduxjs/toolkit';
 import * as types from './types';
+import { useSelector } from 'react-redux';
+import { RootState } from '../rootReducer';
 
 const AuthorsInitialState = [] as types.Author[];
 
@@ -22,3 +25,17 @@ export const authorsReducer = (
 			return state;
 	}
 };
+
+const initialSelectedAuthors: string[] = [];
+
+export const selectedAuthorsSlice = createSlice({
+	name: 'selectedAuthors',
+	initialState: initialSelectedAuthors,
+	reducers: {
+		addAuthor: (selectedAuthors, action) => {
+			if (!selectedAuthors.includes(action.payload)) {
+				selectedAuthors.push(action.payload);
+			}
+		},
+	},
+});

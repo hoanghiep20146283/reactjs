@@ -1,7 +1,7 @@
 import React, { ForwardedRef, forwardRef, useEffect, useState } from 'react';
 import styles from './InputText.module.css';
 import { useFormContext } from 'react-hook-form';
-import { AnimatePresence, motion } from "framer-motion"
+import { AnimatePresence } from "framer-motion"
 import { isFormInvalid, findInputError } from '../utils';
 
 interface InputTextProps {

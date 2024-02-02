@@ -4,7 +4,6 @@ import InputText from '../../common/InputText/InputText';
 import Button from '../../common/Button/Button';
 import { FormProvider, useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
-import { store } from '../../store';
 import { useDispatch } from 'react-redux';
 import { UserActionTypes } from '../../store/users/types';
 
