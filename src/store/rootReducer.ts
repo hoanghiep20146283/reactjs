@@ -1,12 +1,12 @@
 import { combineReducers } from '@reduxjs/toolkit';
 import { coursesReducer } from './courses/reducer';
 import { authorsReducer, selectedAuthorsSlice } from './authors/reducer';
-import { userReducer } from './users/reducer';
+import { userSlice } from './users/reducer';
 
 export const rootReducer = combineReducers({
 	courses: coursesReducer,
 	authors: authorsReducer,
-	user: userReducer,
+	user: userSlice.reducer,
 	selectedAuthors: selectedAuthorsSlice.reducer,
 });
 
