@@ -1,8 +1,9 @@
+import { UnknownAction } from 'redux';
 import * as types from './types';
 
 export const addNewCourseAction = (
 	courseData: types.Course
-): types.CoursesAction => ({
+): UnknownAction => ({
 	type: types.CoursesActionTypes.ADD_COURSE,
 	payload: courseData,
 });

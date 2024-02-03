@@ -8,10 +8,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchAuthors } from '../../store/service';
 import { RootState } from '../../store/rootReducer';
 import { useNavigate } from 'react-router-dom';
-import { addNewCourseAction } from '../../store/courses/action';
-import { Course, CourseResponse, CoursesAction } from '../../store/courses/types';
 import { selectedAuthorsSlice } from '../../store/authors/reducer';
-import { UnknownAction } from 'redux';
+import { useCreateCourseMutation } from '../../store/courses/reducer';
 
 type FormValues = {
   title: string;
@@ -34,39 +32,31 @@ const CourseManage: FC = () => {
 
   const handleAddAuthor = async selectedAuthor => {
     const matchedAuthor = authors.find(author => author.name === selectedAuthor.name)
-    if(matchedAuthor){
+    if (matchedAuthor) {
       store.dispatch(selectedAuthorsSlice.actions.addAuthor(matchedAuthor.id));
     } else {
       alert(`There is no author name: ${selectedAuthor.name}`);
     }
   }
 
+  const [addCourse, result] = useCreateCourseMutation()
+
   const onSubmit = async course => {
     course.authors = selectedAuthors;
     course.duration = parseInt(course.duration);
-    const token = localStorage.getItem('bearerToken');
 
-    if (!token) {
-      console.error('No access token found in local storage.');
-      return;
-    }
-
-    const response = await fetch('http://localhost:4000/courses/add', {
-      method: 'POST',
-      body: JSON.stringify(course),
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json',
-      },
-    });
-
-    const courseResponse: CourseResponse = await response.json();
-    if (courseResponse && courseResponse.result) {
-      dispatch(addNewCourseAction(courseResponse.result))
+    const courseResponse = await addCourse(course);
+    if (courseResponse && "data" in courseResponse && !result.error) {
+      store.dispatch(selectedAuthorsSlice.actions.clearAuthors());
       navigate('/courses');
-    } else {
-      alert(JSON.stringify(courseResponse));
+    } else if ("error" in courseResponse) {
+      alert(JSON.stringify(courseResponse.error));
     }
+  };
+
+  const onReset = async () => {
+    methods.reset();
+    store.dispatch(selectedAuthorsSlice.actions.clearAuthors());
   };
 
   const methods = useForm<FormValues>();
@@ -119,13 +109,17 @@ const CourseManage: FC = () => {
           </div>
           <div className={styles.CourseAuthors}>
             <div className={styles.MainTitle}>Course Authors</div>
-            <p>Author list is empty</p>
+            {
+              selectedAuthors.map(authorId =>
+                <p id={authorId}>{authors.find(author => author.id === authorId)?.name}</p>
+              )
+            }
           </div>
         </div>
       </div>
       <div className={styles.ButtonGroup}>
         <div className={styles.ButtonWrapper}>
-          <Button content='Cancel' type='reset' />
+          <Button content='Cancel' type='button' onClick={onReset} />
         </div>
         <div className={styles.ButtonWrapper}>
           <Button content='Create Course' type='submit' onClick={methods.handleSubmit(onSubmit)} />

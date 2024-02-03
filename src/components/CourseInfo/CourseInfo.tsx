@@ -3,16 +3,23 @@ import styles from './CourseInfo.module.css';
 import Button from '../../common/Button/Button';
 import { Course } from '../../store/courses/types';
 import { convertToHoursAndMinutes, convertDateFormat } from '../../common/utils';
-import { store } from '../../store/index';
-import { deleteCourses } from '../../store/service';
+import { useDeleteCourseMutation } from '../../store/courses/reducer';
+import { useNavigate } from 'react-router-dom';
 type CourseProperty = {
 	course: Course
 }
 
 const CourseInfo: FC<CourseProperty> = ({ course }) => {
-	const handleDeleteCourse = (e) => {
+	const [deleteCourse] = useDeleteCourseMutation();
+	const navigate = useNavigate();
+	const handleDeleteCourse = async e => {
 		e.preventDefault();
-		store.dispatch(deleteCourses(course.id));
+		const result = await deleteCourse(course.id);
+		if ("error" in result) {
+			alert(JSON.stringify(result.error));
+		} else {
+			navigate('/courses');
+		}
 	}
 
 	return (

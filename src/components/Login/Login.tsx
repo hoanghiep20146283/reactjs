@@ -8,13 +8,8 @@ import { User } from '../../store/users/types';
 import { login } from '../../store/users/reducer';
 import { store } from '../../store';
 
-type FormValues = {
-  email: string;
-  password: string;
-}
-
 const Login: FC = () => {
-  const methods = useForm<FormValues>();
+  const methods = useForm<User>();
   const navigate = useNavigate();
 
   const onSubmit = async (user: User) => {

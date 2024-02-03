@@ -1,7 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 import * as types from './types';
-import { useSelector } from 'react-redux';
-import { RootState } from '../rootReducer';
 
 const AuthorsInitialState = [] as types.Author[];
 
@@ -37,5 +35,6 @@ export const selectedAuthorsSlice = createSlice({
 				selectedAuthors.push(action.payload);
 			}
 		},
+		clearAuthors: () => initialSelectedAuthors,
 	},
 });

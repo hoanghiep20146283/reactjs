@@ -29,7 +29,17 @@ interface DeleteCourse {
 }
 
 export interface CourseResponse {
+	successful: boolean;
+	result: Course[];
+}
+
+export interface CreateCourseResponse {
+	successful: boolean;
 	result: Course;
+}
+
+export interface DeleteCourseResponse {
+	successful: boolean;
 }
 
 export type CoursesAction = SaveCourses | AddCourse | DeleteCourse;
