@@ -9,7 +9,7 @@ const UsersInitialState: types.User = {
 };
 
 export const userSlice = createSlice({
-	name: 'users',
+	name: 'user',
 	initialState: UsersInitialState,
 	reducers: {
 		login: (state, action) => {

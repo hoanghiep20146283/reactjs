@@ -4,6 +4,10 @@ import InputText from '../../common/InputText/InputText';
 import Button from '../../common/Button/Button';
 import { Link, useNavigate } from 'react-router-dom';
 import { useForm, FormProvider } from "react-hook-form"
+import { useDispatch, useSelector } from 'react-redux';
+import { UserActionTypes } from '../../store/users/types';
+import { store } from '../../store';
+import { RootState } from '../../store/rootReducer';
 
 type FormValues = {
   name: string;
@@ -12,24 +16,15 @@ type FormValues = {
 }
 
 const Registration: FC = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-
   const methods = useForm<FormValues>();
+  const { loading } = useSelector((state: RootState) => state.register);
 
   const onSubmit = async newUser => {
-    const response = await fetch('http://localhost:4000/register', {
-      method: 'POST',
-      body: JSON.stringify(newUser),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-
-    const result = await response.json();
-    if (result && result.successful === true) {
-      navigate("/login");
-    } else {
-      alert(JSON.stringify(result));
+    dispatch({ type: UserActionTypes.REGISTER_USER, payload: newUser });
+    if (!loading) {
+      console.log(loading);
     }
   };
 
@@ -48,7 +43,7 @@ const Registration: FC = () => {
             <InputText content='Type your Email..' name='email' type='email' />
             <div className={styles.Title}>Password</div>
             <InputText content='Type your Password..' name='password' type='password' />
-            <Button content='Login' type='submit' />
+            <Button content='Register' type='submit' />
             <p>
               If you have an account you may <Link to={"/login"}>Login</Link>
             </p>
