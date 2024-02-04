@@ -1,11 +1,5 @@
 import { all, call, put, takeEvery } from 'redux-saga/effects';
 import { UserActionTypes } from '../users/types';
-import { useNavigate } from 'react-router-dom';
-import { createSlice } from '@reduxjs/toolkit';
-
-const INITIAL_STATE = {
-	loading: false,
-};
 
 // worker Saga: will be fired on USER_FETCH_REQUESTED actions
 export function* registerUser(action) {
