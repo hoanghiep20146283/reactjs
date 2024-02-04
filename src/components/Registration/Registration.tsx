@@ -4,10 +4,8 @@ import InputText from '../../common/InputText/InputText';
 import Button from '../../common/Button/Button';
 import { Link, useNavigate } from 'react-router-dom';
 import { useForm, FormProvider } from "react-hook-form"
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { UserActionTypes } from '../../store/users/types';
-import { store } from '../../store';
-import { RootState } from '../../store/rootReducer';
 
 type FormValues = {
   name: string;
@@ -19,13 +17,10 @@ const Registration: FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const methods = useForm<FormValues>();
-  const { loading } = useSelector((state: RootState) => state.register);
 
   const onSubmit = async newUser => {
     dispatch({ type: UserActionTypes.REGISTER_USER, payload: newUser });
-    if (!loading) {
-      console.log(loading);
-    }
+    navigate('/login');
   };
 
   console.log(`[Registration] formState name errors is: ${JSON.stringify(methods.formState.errors.name?.message)}`);

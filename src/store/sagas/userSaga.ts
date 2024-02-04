@@ -10,41 +10,31 @@ const INITIAL_STATE = {
 // worker Saga: will be fired on USER_FETCH_REQUESTED actions
 export function* registerUser(action) {
 	try {
-		const { result } = yield call(sendRegisterUserRequest, action.payload);
-		yield put({ type: UserActionTypes.REGISTER_USER_SUCCESS, result });
+		const { result, successful, errors } = yield call(
+			sendRegisterUserRequest,
+			action.payload
+		);
+		if (successful === true) {
+			yield put({
+				type: UserActionTypes.REGISTER_USER_SUCCESS,
+				payload: result,
+			});
+		} else {
+			yield put({
+				type: UserActionTypes.REGISTER_USER_FAILED,
+				payload: errors.join(', '),
+			});
+		}
 	} catch (error: any) {
 		yield put({
 			type: UserActionTypes.REGISTER_USER_FAILED,
-			message: error.message,
+			payload: error,
 		});
 	}
 }
 
-export const registerSlice = createSlice({
-	name: 'register',
-	initialState: INITIAL_STATE,
-	reducers: {
-		login: (state, action) => {
-			switch (action.type) {
-				case UserActionTypes.REGISTER_USER:
-					return { loading: true };
-				case UserActionTypes.REGISTER_USER_SUCCESS:
-					return { loading: false };
-
-				case UserActionTypes.REGISTER_USER_FAILED: {
-					return { loading: false };
-				}
-
-				default:
-					return { loading: true };
-			}
-		},
-	},
-});
-
-const navigate = () => {
-	const navigate = useNavigate();
-	navigate('/login');
+const notify = (action) => {
+	alert(action.payload);
 };
 
 const sendRegisterUserRequest = async (newUser) => {
@@ -64,9 +54,13 @@ function* registerSaga() {
 }
 
 function* successRegisterSaga() {
-	yield takeEvery(UserActionTypes.REGISTER_USER_SUCCESS, navigate);
+	yield takeEvery(UserActionTypes.REGISTER_USER_SUCCESS, notify);
+}
+
+function* failRegisterSaga() {
+	yield takeEvery(UserActionTypes.REGISTER_USER_FAILED, notify);
 }
 
 export default function* rootSaga() {
-	yield all([registerSaga(), successRegisterSaga()]);
+	yield all([registerSaga(), successRegisterSaga(), failRegisterSaga()]);
 }
