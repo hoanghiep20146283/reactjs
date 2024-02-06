@@ -28,7 +28,7 @@
       "*": ["src/types/*"]
     },
     "typeRoots": ["./node_modules/@types", "./src/types"],
-    "types": ["node", "react", "react-dom"],
+    "types": ["node", "react", "react-dom", "jest"],
     "declaration": true,
     "jsxFactory": "React.createElement",
     "jsxFragmentFactory": "React.Fragment"

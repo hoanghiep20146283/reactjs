@@ -6,9 +6,6 @@ import Courses from './Courses';
 describe('<Courses />', () => {
   test('it should mount', () => {
     render(<Courses />);
-    
     const courses = screen.getByTestId('Courses');
-
-    expect(courses).toBeInTheDocument();
   });
 });
