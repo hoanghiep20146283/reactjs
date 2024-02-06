@@ -24,7 +24,7 @@ const Courses: FC = () => {
 	return (
 		<div className={styles.Courses} data-testid='Courses'>
 			<SearchBar />
-			{filteredCourses
+			{(!isFetching && filteredCourses)
 				? filteredCourses.map(course => <CourseInfo key={course.id} course={course}></CourseInfo>)
 				: 'No data available'
 			}
