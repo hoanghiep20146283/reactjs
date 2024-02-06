@@ -4,7 +4,24 @@ import {
 	CourseResponse,
 	CreateCourseResponse,
 	DeleteCourseResponse,
+	FilterCoursesActionTypes,
 } from './types';
+import { createSlice } from '@reduxjs/toolkit';
+
+const FilterInitialState = '';
+
+export const courseFilterSlice = createSlice({
+	name: 'courseFilter',
+	initialState: FilterInitialState,
+	reducers: {
+		updateFilter: (state, action) => {
+			return action.payload;
+		},
+		clearFilter: () => {
+			return FilterInitialState;
+		},
+	},
+});
 
 export const courseApi = createApi({
 	reducerPath: 'courses',
@@ -21,7 +38,7 @@ export const courseApi = createApi({
 	}),
 
 	endpoints: (builder) => ({
-		getAllCourses: builder.query<CourseResponse, string>({
+		getAllCourses: builder.query<CourseResponse, Record<any, never>>({
 			query: () => 'all',
 			providesTags: () => [{ type: 'Courses' }],
 		}),

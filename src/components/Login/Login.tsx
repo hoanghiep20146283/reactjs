@@ -14,8 +14,16 @@ const Login: FC = () => {
 
   const onSubmit = async (user: User) => {
     store.dispatch(login(user)).then(({ payload }) => {
-      localStorage.setItem('bearerToken', payload.result.slice('Bearer'.length));
-      navigate('/courses');
+      if (payload.successful) {
+        localStorage.setItem('bearerToken', payload.result.slice('Bearer'.length));
+        navigate('/courses');
+      } else {
+        alert(payload.result);
+        methods.reset();
+      }
+    }).catch((error: Error) => {
+      alert(error.message);
+      methods.reset();
     });
   };
 

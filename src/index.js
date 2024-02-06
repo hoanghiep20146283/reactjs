@@ -11,8 +11,14 @@ import Courses from './components/Courses/Courses.tsx';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from './store/index.ts';
+import { courseApi } from './store/courses/reducer.ts';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+// If we want to fetch the list of courses outside of React,
+// we can dispatch getAllCourses.initiate() thunk like this
+store.dispatch(courseApi.endpoints.getAllCourses.initiate());
+
 root.render(
 	<Provider store={store}>
 		<React.StrictMode>

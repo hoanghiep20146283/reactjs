@@ -13,17 +13,10 @@ export const userSlice = createSlice({
 	initialState: UsersInitialState,
 	reducers: {
 		login: (state, action) => {
-			switch (action.type) {
-				case types.UserActionTypes.SAVE_USER:
-					return action.payload;
-
-				case types.UserActionTypes.CLEAR_USER: {
-					return UsersInitialState;
-				}
-
-				default:
-					return state;
-			}
+			return action.payload;
+		},
+		logout: () => {
+			return UsersInitialState;
 		},
 	},
 	extraReducers: (builder) => {
@@ -55,7 +48,7 @@ export const login = createAsyncThunk(
 			!loginResponse.result ||
 			!loginResponse.result.startsWith('Bearer')
 		) {
-			rejectWithValue(loginResponse);
+			return rejectWithValue(loginResponse);
 		}
 		return loginResponse;
 	}

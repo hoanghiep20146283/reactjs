@@ -8,6 +8,7 @@ interface InputTextProps {
   content: string;
   type: string;
   name: string;
+  required?: boolean;
 }
 
 const InputText = forwardRef(function InputText(props: InputTextProps, forwardedRef: ForwardedRef<HTMLInputElement>) {
@@ -23,22 +24,31 @@ const InputText = forwardRef(function InputText(props: InputTextProps, forwarded
 
   return (
     <>
-      <input required type={type} className={styles.InputText} data-testid='InputText' placeholder={content}
-        {...register(name, {
-          required: {
-            value: true,
-            message: 'required',
-          },
-          validate: (value, formValue) => {
-            console.log(`Validating: ${value}, formValue: ${formValue}`);
-            if (value === "") {
-              return "Value is not empty";
-            } else if (value.trim() === "") {
-              return "Value is not blank";
+      {props.required ?
+        <input required type={type} className={styles.InputText} data-testid='InputText' placeholder={content}
+          {...register(name, {
+            required: {
+              value: true,
+              message: 'required',
+            },
+            validate: (value, formValue) => {
+              console.log(`Validating: ${value}, formValue: ${formValue}`);
+              if (value === "") {
+                return "Value is not empty";
+              } else if (value.trim() === "") {
+                return "Value is not blank";
+              }
+              return true;
             }
-            return true;
-          }
-        })} />
+          })} />
+        :
+        <input type={type} className={styles.InputText} data-testid='InputText' placeholder={content}
+          {...register(name, {
+            required: {
+              value: false,
+              message: 'required',
+            }
+          })} />}
       <AnimatePresence mode="wait" initial={false}>
         {isInvalid && (
           <InputError

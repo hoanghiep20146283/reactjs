@@ -12,6 +12,10 @@
     margin-left: 20px;
   }
 
+  .formHorizontal {
+    display: flex;
+  }
+
   input {
     display: flex;
     width: 400px;

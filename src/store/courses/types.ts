@@ -13,6 +13,11 @@ export const enum CoursesActionTypes {
 	DELETE_COURSE = 'DELETE_COURSES',
 }
 
+export const enum FilterCoursesActionTypes {
+	SAVE_FILTER = 'SAVE_FILTER',
+	CLEAR_FILTER = 'CLEAR_FILTER',
+}
+
 interface SaveCourses {
 	type: CoursesActionTypes.SAVE_COURSES;
 	payload: Course[];

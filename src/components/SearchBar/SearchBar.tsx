@@ -4,22 +4,25 @@ import Button from '../../common/Button/Button';
 import InputText from '../../common/InputText/InputText';
 import { FormProvider, useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { courseFilterSlice } from '../../store/courses/reducer';
 
 const SearchBar: FC = () => {
 	const searchRef = useRef<HTMLInputElement>(null);
-	const methods = useForm({
-		defaultValues: {
-			search: "",
-		},
-	})
+	const methods = useForm();
+	const dispatch = useDispatch();
+	const onSubmit = ({ searchText }) => {
+		dispatch(courseFilterSlice.actions.updateFilter(searchText));
+	};
+
 	return (
 		<div className={styles.SearchBar} data-testid='SearchBar'>
 			<FormProvider {...methods}>
-				<form onSubmit={e => e.preventDefault()} noValidate >
-					<InputText content="Type search text.." name='search' type='text' ref={searchRef} />
+				<form onSubmit={methods.handleSubmit(onSubmit)} className={styles.formHorizontal} noValidate>
+					<InputText content="Type search text.." name='searchText' type='text' ref={searchRef} required={false} />
+					<Button content='SEARCH' type='submit' />
 				</form>
 			</FormProvider>
-			<Button content='SEARCH' type='submit' />
 			<div className={styles.Space}></div>
 			<div className={styles.AddNewCourse}>
 				<Link to={"/courses/add"}>ADD NEW COURSE</Link>
