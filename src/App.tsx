@@ -19,8 +19,13 @@ function App() {
 	}
 	return (
 		<>
-			<Header />
-			<Outlet />
+			{location.pathname === '/login' || location.pathname === '/registration' ?
+				(<Outlet />)
+				: (<>
+					<Header />
+					<Outlet />
+				</>)
+			}
 		</>
 	);
 }
