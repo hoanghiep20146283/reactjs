@@ -6,6 +6,9 @@ module.exports = {
 	entry: './src/index.js', // Dẫn tới file index.js ta đã tạo
 	resolve: {
 		extensions: ['.js', '.jsx', '.ts', '.tsx'],
+		alias: {
+			'@store': path.resolve(__dirname, './src/store')
+		}
 	},
 	output: {
 		path: path.resolve(__dirname, 'dist'), // Thư mục chứa file được build ra

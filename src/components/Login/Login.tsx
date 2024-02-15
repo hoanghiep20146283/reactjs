@@ -5,8 +5,8 @@ import Button from '../../common/Button/Button';
 import { FormProvider, useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import { User } from '../../store/users/types';
-import { login } from '../../store/users/reducer';
-import { store } from '../../store';
+import { login } from '@/store/users/reducer';
+import { store } from '@/store';
 
 const Login: FC = () => {
   const methods = useForm<User>();

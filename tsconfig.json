@@ -1,7 +1,12 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext", "ES2021"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext",
+      "ES2021"
+    ],
     "plugins": [
       {
         "name": "typescript-plugin-css-modules"
@@ -24,11 +29,26 @@
     "emitDecoratorMetadata": true,
     "baseUrl": "./src",
     "paths": {
-      "@/*": ["*"],
-      "*": ["src/types/*"]
+      "@/*": [
+        "*"
+      ],
+      "*": [
+        "src/types/*"
+      ],
+      "@store/*": [
+        "src/store/*"
+      ],
     },
-    "typeRoots": ["./node_modules/@types", "./src/types"],
-    "types": ["node", "react", "react-dom", "jest"],
+    "typeRoots": [
+      "./node_modules/@types",
+      "./src/types"
+    ],
+    "types": [
+      "node",
+      "react",
+      "react-dom",
+      "jest"
+    ],
     "declaration": true,
     "jsxFactory": "React.createElement",
     "jsxFragmentFactory": "React.Fragment"
@@ -41,5 +61,7 @@
     "types/**/*.d.ts",
     "src/**/*.css"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules"
+  ]
 }
