@@ -36,7 +36,7 @@
         "src/types/*"
       ],
       "@store/*": [
-        "src/store/*"
+        "store/*"
       ],
     },
     "typeRoots": [

@@ -7,8 +7,15 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../store/rootReducer';
 import { createSelector } from '@reduxjs/toolkit/react';
 
+type QueryResult = {
+	result?: any;
+};
+
 const selectFilteredCourses = createSelector(
-	[(state: RootState) => state.courses.queries["getAllCourses(undefined)"]?.data?.result, (state: RootState) => state.courseFilter],
+	[(state: RootState) => {
+		const queryResult = state.courses.queries["getAllCourses(undefined)"]?.data;
+		return (queryResult as QueryResult).result;
+	}, (state: RootState) => state.courseFilter],
 	(courses, searchText) => (searchText && searchText.trim().length > 0) ?
 		courses.filter(course => course.title.toUpperCase().indexOf(searchText.trim().toUpperCase()) !== -1) ?? [] : courses,
 )

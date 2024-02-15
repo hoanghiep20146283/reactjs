@@ -7,9 +7,13 @@ import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { courseFilterSlice } from '../../store/courses/reducer';
 
+type FormValues = {
+	searchText: string;
+}
+
 const SearchBar: FC = () => {
 	const searchRef = useRef<HTMLInputElement>(null);
-	const methods = useForm();
+	const methods = useForm<FormValues>();
 	const dispatch = useDispatch();
 	const onSubmit = ({ searchText }) => {
 		dispatch(courseFilterSlice.actions.updateFilter(searchText));

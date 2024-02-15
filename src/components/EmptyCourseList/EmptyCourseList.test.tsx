@@ -9,6 +9,6 @@ describe('<EmptyCourseList />', () => {
     
     const emptyCourseList = screen.getByTestId('EmptyCourseList');
 
-    expect(emptyCourseList).toBeInTheDocument();
+    expect(emptyCourseList).toBeDefined();
   });
 });

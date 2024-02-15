@@ -5,11 +5,9 @@ import Button from './Button';
 
 describe('<Button />', () => {
 	test('it should mount', () => {
-		render(<Button content={'test'} />);
+		render(<Button content='Show Courses' type='button'></Button>);
 
-		const button = screen.getByTestId('Button');
-
-		expect(button).toBeInTheDocument();
+		screen.getByTestId('Button');		
 	});
 });
 

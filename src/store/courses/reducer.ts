@@ -40,7 +40,7 @@ export const courseApi = createApi({
 	endpoints: (builder) => ({
 		getAllCourses: builder.query<CourseResponse, Record<any, never>>({
 			query: () => 'all',
-			providesTags: () => [{ type: 'Courses' }],
+			providesTags: () => [{ type: 'Courses', id: 123456 }],
 		}),
 		createCourse: builder.mutation<
 			CreateCourseResponse,
@@ -68,7 +68,7 @@ export const courseApi = createApi({
 			}),
 			transformResponse: (response: DeleteCourseResponse) => response,
 			transformErrorResponse: (response: any) => response?.data?.errors,
-			invalidatesTags: () => [{ type: 'Courses' }],
+			invalidatesTags: (result, payload) => [{ type: 'Courses' }],
 		}),
 	}),
 });

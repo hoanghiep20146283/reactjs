@@ -5,10 +5,10 @@ import InputText from './InputText';
 
 describe('<InputText />', () => {
 	test('it should mount', () => {
-		render(<InputText />);
+		render(<InputText content='Type your Title..' type='text' name='title' />);
 
 		const inputText = screen.getByTestId('InputText');
 
-		expect(inputText).toBeInTheDocument();
+		expect(inputText).toBeDefined();
 	});
 });

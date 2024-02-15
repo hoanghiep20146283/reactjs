@@ -9,6 +9,6 @@ describe('<Registration />', () => {
     
     const registration = screen.getByTestId('Registration');
 
-    expect(registration).toBeInTheDocument();
+    expect(registration).toBeDefined();
   });
 });

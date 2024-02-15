@@ -5,7 +5,7 @@ const webpack = require('webpack');
 module.exports = {
 	entry: './src/index.js', // Dẫn tới file index.js ta đã tạo
 	resolve: {
-		extensions: ['.js', '.jsx', '.ts', '.tsx'],
+		extensions: ['.js', '.jsx', '.ts', '.tsx', '.wasm', '.mjs', '.js', '.json'],
 		alias: {
 			'@store': path.resolve(__dirname, './src/store')
 		}

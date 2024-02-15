@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 import styles from './EmptyCourseList.module.css';
-import InputText from '../../common/InputText/InputText';
 import Button from '../../common/Button/Button';
 
 const EmptyCourseList: FC = () => (
@@ -12,7 +11,7 @@ const EmptyCourseList: FC = () => (
 		<p>
 			Please use ’Add New Course’ button to add your first course
 		</p>
-		<Button content='Add new course' />
+		<Button content='Add new course' type='button' />
 	</div>
 );
 

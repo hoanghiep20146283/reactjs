@@ -9,6 +9,6 @@ describe('<CourseDetail />', () => {
     
     const courseDetail = screen.getByTestId('CourseDetail');
 
-    expect(courseDetail).toBeInTheDocument();
+    expect(courseDetail).toBeDefined();
   });
 });

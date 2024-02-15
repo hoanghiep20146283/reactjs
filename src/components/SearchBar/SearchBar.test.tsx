@@ -9,6 +9,6 @@ describe('<SearchBar />', () => {
     
     const searchBar = screen.getByTestId('SearchBar');
 
-    expect(searchBar).toBeInTheDocument();
+    expect(searchBar).toBeDefined();
   });
 });

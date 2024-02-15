@@ -54,7 +54,7 @@
       "alias": [
         [
           "@store",
-          "../../store"
+          "src/store"
         ]
       ]
     }
