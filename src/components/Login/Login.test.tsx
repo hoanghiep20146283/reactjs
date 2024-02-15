@@ -5,7 +5,6 @@ import Login from './Login';
 import { configureStore } from '@reduxjs/toolkit';
 import { rootReducer } from '../../store/rootReducer';
 import { Provider } from 'react-redux';
-import { userSlice } from '../../store/users/reducer';
 
 jest.mock("http://localhost:4000/login", () => ({
 	getUserData: () => ({

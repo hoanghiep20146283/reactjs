@@ -4,6 +4,10 @@ module.exports = {
 
 	// A list of file extensions your modules use
 	moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx', 'json', 'node'],
+	moduleNameMapper: {
+		'\\.(css|less)$': '<rootDir>/test/styleMock.js',
+		'^@store(.*)$': '<rootDir>/src/store$1',
+	},
 
 	// Jest transformations
 	transform: {
@@ -11,7 +15,7 @@ module.exports = {
 	},
 
 	// Test environment setup
-	testEnvironment: 'node',
+	testEnvironment: 'jsdom',
 	preset: 'react-native',
 
 	// Test match patterns
