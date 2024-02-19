@@ -1,8 +1,14 @@
 export function isFormInvalid(errors: any): boolean {
+	if (!errors) {
+		return false;
+	}
 	return Object.keys(errors).length > 0;
 }
 
 export function findInputError(errors, name): Record<string, any> {
+	if (!errors) {
+		return {};
+	}
 	const filtered = Object.keys(errors)
 		.filter((key) => key.includes(name))
 		.reduce((cur, key) => Object.assign(cur, { error: errors[key] }), {});
@@ -35,19 +41,19 @@ export function convertToHoursAndMinutes(number: number): string {
 }
 
 export function convertDateFormat(inputDate: string): string {
-    const parts = inputDate.split('/');
-    
-    if (parts.length !== 3) {
-        return "NaN";
-    }
+	const parts = inputDate.split('/');
 
-    const [day, month, year] = parts.map(Number);
+	if (parts.length !== 3) {
+		return "NaN";
+	}
 
-    if (isNaN(day) || isNaN(month) || isNaN(year)) {
-        return "PT0S";
-    }
+	const [day, month, year] = parts.map(Number);
 
-    const formattedDate = `${day < 10 ? '0' : ''}${day}.${month < 10 ? '0' : ''}${month}.${year}`;
+	if (isNaN(day) || isNaN(month) || isNaN(year)) {
+		return "PT0S";
+	}
 
-    return formattedDate;
+	const formattedDate = `${day < 10 ? '0' : ''}${day}.${month < 10 ? '0' : ''}${month}.${year}`;
+
+	return formattedDate;
 }

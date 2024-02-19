@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import './App.css';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import Header from './components/Header/Header';
+
 function App() {
 	const navigate = useNavigate();
 	const location = useLocation();

@@ -1,14 +1,38 @@
-import { render, screen } from '@testing-library/react';
-
-import App from './App';
 import React from 'react';
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
+import { Provider } from 'react-redux';
+import { configureStore } from '@reduxjs/toolkit';
+import { rootReducer } from '@store/rootReducer';
+import { MemoryRouter } from 'react-router-dom';
+import { waitFor } from '@testing-library/dom';
+import App from './App';
 
-describe('App', () => {
-    test('Renders App component', () => {
-        // Used React Testing Library's render method to virtually render the App component and append it to the document.body node.
-        render(<App />);
+const mockUsedNavigate = jest.fn();
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  useNavigate: () => mockUsedNavigate,
+}));
 
-        // Checks whether the element is in the DOM
-        expect(screen.getByText('LOGIN')).toBeDefined();
-    });
+const store = configureStore({
+  reducer: rootReducer,
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
+});
+
+const Wrapper = ({ children }) => (
+  <Provider store={store}>{children}</Provider>
+);
+
+describe('<App />', () => {
+  test('it should mount', async () => {
+    render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>,
+      { wrapper: Wrapper });
+
+    const loginButton = await waitFor(() => screen.getByText('Login'));
+
+    expect(loginButton).toBeDefined();
+  });
 });

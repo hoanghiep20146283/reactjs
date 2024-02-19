@@ -25,9 +25,6 @@ const Courses: FC = () => {
 
 	const filteredCourses = useSelector((state: RootState) => selectFilteredCourses(state));
 
-	// const searchText = useSelector((state:RootState) => state.courseFilter);
-	// const filteredCourses = (searchText && searchText.trim().length > 0) ? data?.result.filter(course => course.title.toUpperCase().indexOf(searchText.trim().toUpperCase()) !== -1) : data?.result;
-
 	return (
 		<div className={styles.Courses} data-testid='Courses'>
 			<SearchBar />

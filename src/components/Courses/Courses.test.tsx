@@ -20,8 +20,6 @@ const store = configureStore({
     getDefaultMiddleware().concat(courseApi.middleware),
 });
 
-// Creating a Wrapper. 
-// This component will wrap the Login component with Provider and apply a mocked state
 const Wrapper = ({ children }) => (
   <Provider store={store}>{children}</Provider>
 );

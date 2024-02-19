@@ -1,14 +1,38 @@
-import { render, screen } from '@testing-library/react';
-
 import React from 'react';
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
+import { Provider } from 'react-redux';
+import { configureStore } from '@reduxjs/toolkit';
+import { rootReducer } from '@store/rootReducer';
+import { MemoryRouter } from 'react-router-dom';
+import { waitFor } from '@testing-library/dom';
 import Header from './Header';
 
-describe('App', () => {
-    test('Renders App component', () => {
-        // Used React Testing Library's render method to virtually render the App component and append it to the document.body node.
-        render(<Header />);
+const mockUsedNavigate = jest.fn();
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  useNavigate: () => mockUsedNavigate,
+}));
 
-        // Checks whether the element is in the DOM
-        expect(screen.getByText('LOGIN')).toBeDefined();
-    });
+const store = configureStore({
+  reducer: rootReducer,
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
+});
+
+const Wrapper = ({ children }) => (
+  <Provider store={store}>{children}</Provider>
+);
+
+describe('<Header />', () => {
+  test('it should mount', async () => {
+    render(
+      <MemoryRouter>
+        <Header />
+      </MemoryRouter>,
+      { wrapper: Wrapper });
+
+    const header = await waitFor(() => screen.getByTestId('Header'));
+
+    expect(header).toBeDefined();
+  });
 });
