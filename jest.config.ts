@@ -8,7 +8,6 @@ module.exports = {
 		'\\.(css|less)$': '<rootDir>/test/styleMock.js',
 		'^@store(.*)$': '<rootDir>/src/store$1',
 	},
-
 	// Jest transformations
 	transform: {
 		'^.+\\.(ts|tsx)$': '<rootDir>/node_modules/ts-jest/preprocessor.js',

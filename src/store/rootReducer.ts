@@ -7,7 +7,7 @@ export const rootReducer = combineReducers({
 	[courseApi.reducerPath]: courseApi.reducer,
 	[courseFilterSlice.reducerPath]: courseFilterSlice.reducer,
 	authors: authorsReducer,
-	[userSlice.reducerPath]: userSlice.reducer,
+	user: userSlice.reducer,
 	[selectedAuthorsSlice.reducerPath]: selectedAuthorsSlice.reducer,
 });
 

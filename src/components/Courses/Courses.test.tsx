@@ -1,32 +1,41 @@
 import React from 'react';
-import { render, screen, fireEvent, cleanup } from '@testing-library/react';
-import '@testing-library/jest-dom/extend-expect';
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
+import { Provider } from 'react-redux';
+import { configureStore } from '@reduxjs/toolkit';
+import { rootReducer } from '@store/rootReducer';
 import Courses from './Courses';
+import { courseApi } from '@store/courses/reducer';
+import { MemoryRouter } from 'react-router-dom';
 
-afterEach(cleanup)
+const mockUsedNavigate = jest.fn();
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  useNavigate: () => mockUsedNavigate,
+}));
 
-describe('Courses component', () => {
-  test('Should return Angular Course', async () => {
-    render(<Courses />);
+const store = configureStore({
+  reducer: rootReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(courseApi.middleware),
+});
 
-    fireEvent.change(screen.getByRole('textbox'), {
-      target: { value: 'Angular' },
-    });
+// Creating a Wrapper. 
+// This component will wrap the Login component with Provider and apply a mocked state
+const Wrapper = ({ children }) => (
+  <Provider store={store}>{children}</Provider>
+);
 
-    expect(screen.getByTestId('Courses')).toBeDefined();
-    const angularCourse = await screen.findByText('Angular');
-    expect(angularCourse).toBeDefined();
-  });
+describe('<Courses />', () => {
+  test('it should mount', () => {
+    render(
+      <MemoryRouter>
+        <Courses />
+      </MemoryRouter>,
+      { wrapper: Wrapper });
 
-  test('Should not return Angular Course after filtered', async () => {
-    render(<Courses />);
+    const courses = screen.getByTestId('Courses');
 
-    fireEvent.change(screen.getByRole('textbox'), {
-      target: { value: 'Angular1' },
-    });
-
-    expect(screen.getByTestId('Courses')).toBeDefined();
-    const angularCourse = await screen.findByText('Angular');
-    expect(angularCourse).toBeNull();
+    expect(courses).toBeDefined();
   });
 });

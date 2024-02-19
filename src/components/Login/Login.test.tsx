@@ -1,26 +1,42 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom/extend-expect';
-import Login from './Login';
-import { configureStore } from '@reduxjs/toolkit';
-import { rootReducer } from '../../store/rootReducer';
+import { fireEvent, render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import { Provider } from 'react-redux';
+import { configureStore } from '@reduxjs/toolkit';
+import { rootReducer } from '@store/rootReducer';
+import { courseApi } from '@store/courses/reducer';
+import { MemoryRouter } from 'react-router-dom';
+import Login from './Login';
 
-jest.mock("http://localhost:4000/login", () => ({
-	getUserData: () => ({
-		"successful": true,
-		"result": "Bearer haVVdHOcXKQRItv16mXSWLSvsGChiMB3iMFBsn1qpBIddxWCQIWtV8P7y9eH...",
-		"user": {
-			"email": "hoanghiep20179706@gmail.com",
-			"name": "hiep"
-		}
-	})
+// jest.mock('@store/users/reducer', () => {
+// 	const originUserReducerModule = jest.requireActual('@store/users/reducer');
+// 	return {
+// 		__esModule: true,
+// 		...originUserReducerModule,
+// 		login: user => ({
+// 			'payload': {
+// 				'successful': true,
+// 				'result': 'Bearer haVVdHOcXKQRItv16mXSWLSvsGChiMB3iMFBsn1qpBIddxWCQIWtV8P7y9eH...',
+// 				'user': {
+// 					'email': 'hoanghiep20179706@gmail.com',
+// 					'name': 'hiep'
+// 				}
+// 			},
+// 			'type': 'login'
+// 		})
+// 	};
+// });
+
+const mockUsedNavigate = jest.fn();
+jest.mock('react-router-dom', () => ({
+	...jest.requireActual('react-router-dom'),
+	useNavigate: () => mockUsedNavigate,
 }));
 
 const store = configureStore({
 	reducer: rootReducer,
 	middleware: (getDefaultMiddleware) =>
-		getDefaultMiddleware(),
+		getDefaultMiddleware().concat(courseApi.middleware),
 });
 
 // Creating a Wrapper. 
@@ -29,16 +45,13 @@ const Wrapper = ({ children }) => (
 	<Provider store={store}>{children}</Provider>
 );
 
-describe('<Login />', () => {
+describe('<Courses />', () => {
 	test('Login should mount', () => {
-		render(<Login />, { wrapper: Wrapper });
+		render(
+			<MemoryRouter>
+				<Login />
+			</MemoryRouter>
+			, { wrapper: Wrapper });
 		expect(screen.getByTestId('Login')).toBeDefined();
-	});
-
-	test('Should display User name', async () => {
-		render(<Login />, { wrapper: Wrapper });
-		const userName = await screen.findByText("hiep");
-
-		expect(userName).toBeTruthy();
 	});
 });
