@@ -7,17 +7,15 @@ function App() {
 	const navigate = useNavigate();
 	const location = useLocation();
 	useEffect(() => {
+		const token = localStorage.getItem('bearerToken');
 		console.log(`location.pathname: ${location.pathname}`);
-		if (token && (location.pathname === '/' || location.pathname === '')) {
+		if (token && (location.pathname === '/' || location.pathname === '' || location.pathname === '/courses')) {
 			navigate('/courses');
-		} else {
+		} else if (!token) {
 			navigate('/login');
 		}
 	}, []);
-	const token = localStorage.getItem('bearerToken');
-	if (token && (location.pathname === '/' || location.pathname === '')) {
-		navigate('/courses');
-	}
+	
 	return (
 		<>
 			{location.pathname === '/login' || location.pathname === '/registration' ?
