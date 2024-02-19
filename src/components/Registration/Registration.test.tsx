@@ -8,12 +8,6 @@ import { MemoryRouter } from 'react-router-dom';
 import { waitFor } from '@testing-library/dom';
 import Registration from './Registration';
 
-const mockUsedNavigate = jest.fn();
-jest.mock('react-router-dom', () => ({
-  ...jest.requireActual('react-router-dom'),
-  useNavigate: () => mockUsedNavigate,
-}));
-
 const store = configureStore({
   reducer: rootReducer,
   middleware: (getDefaultMiddleware) => getDefaultMiddleware(),

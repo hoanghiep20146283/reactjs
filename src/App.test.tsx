@@ -8,10 +8,9 @@ import { MemoryRouter } from 'react-router-dom';
 import { waitFor } from '@testing-library/dom';
 import App from './App';
 
-const mockUsedNavigate = jest.fn();
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
-  useNavigate: () => mockUsedNavigate,
+  useNavigate: () => jest.fn(),
 }));
 
 const store = configureStore({

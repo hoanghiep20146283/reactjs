@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
@@ -27,12 +27,6 @@ import Login from './Login';
 // 	};
 // });
 
-const mockUsedNavigate = jest.fn();
-jest.mock('react-router-dom', () => ({
-	...jest.requireActual('react-router-dom'),
-	useNavigate: () => mockUsedNavigate,
-}));
-
 const store = configureStore({
 	reducer: rootReducer,
 	middleware: (getDefaultMiddleware) =>
@@ -44,12 +38,14 @@ const Wrapper = ({ children }) => (
 );
 
 describe('<Courses />', () => {
-	test('Login should mount', () => {
+	test('Login should mount', async () => {
 		render(
 			<MemoryRouter>
 				<Login />
 			</MemoryRouter>
 			, { wrapper: Wrapper });
-		expect(screen.getByTestId('Login')).toBeDefined();
+		const login = await waitFor(() => screen.getByTestId('Login'));
+
+		expect(login).toBeDefined();
 	});
 });

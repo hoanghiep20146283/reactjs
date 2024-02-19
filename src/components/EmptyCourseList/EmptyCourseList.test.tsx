@@ -1,16 +1,10 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
 import { rootReducer } from '@store/rootReducer';
 import EmptyCourseList from './EmptyCourseList';
-
-const mockUsedNavigate = jest.fn();
-jest.mock('react-router-dom', () => ({
-   ...jest.requireActual('react-router-dom'),
-  useNavigate: () => mockUsedNavigate,
-}));
 
 const store = configureStore({
 	reducer: rootReducer,
@@ -25,11 +19,11 @@ const Wrapper = ({ children }) => (
 );
 
 describe('<EmptyCourseList />', () => {
-  test('it should mount', () => {
+  test('it should mount', async () => {
 		render(<EmptyCourseList />, { wrapper: Wrapper });
     
-    const emptyCourseList = screen.getByTestId('EmptyCourseList');
+    const emptyCourseList = await waitFor(() => screen.getByTestId('EmptyCourseList'));
 
-    expect(emptyCourseList).toBeDefined();
+		expect(emptyCourseList).toBeDefined();
   });
 });

@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import InputText from './InputText';
 import { FormProvider, useForm } from 'react-hook-form';
@@ -19,7 +19,7 @@ jest.mock('react-hook-form', () => ({
 
 describe('<InputText />', () => {
 	const methods = useForm();
-	test('it should mount', () => {
+	test('it should mount', async () => {
 		render(
 			<FormProvider {...methods}>
 				<form>
@@ -28,7 +28,7 @@ describe('<InputText />', () => {
 			</FormProvider>
 		);
 
-		const inputText = screen.getByTestId('InputText');
+		const inputText = await waitFor(() => screen.getByTestId('InputText'));
 
 		expect(inputText).toBeDefined();
 	});

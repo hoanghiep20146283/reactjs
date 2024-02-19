@@ -20,12 +20,6 @@ const courseDetail = {
   "id": "66cc289e-6de9-49b2-9ca7-8b4f409d6467"
 }
 
-const mockUsedNavigate = jest.fn();
-jest.mock('react-router-dom', () => ({
-  ...jest.requireActual('react-router-dom'),
-  useNavigate: () => mockUsedNavigate,
-}));
-
 const store = configureStore({
   reducer: rootReducer,
   middleware: (getDefaultMiddleware) => getDefaultMiddleware(),

@@ -8,12 +8,6 @@ import Courses from './Courses';
 import { courseApi } from '@store/courses/reducer';
 import { MemoryRouter } from 'react-router-dom';
 
-const mockUsedNavigate = jest.fn();
-jest.mock('react-router-dom', () => ({
-  ...jest.requireActual('react-router-dom'),
-  useNavigate: () => mockUsedNavigate,
-}));
-
 const store = configureStore({
   reducer: rootReducer,
   middleware: (getDefaultMiddleware) =>

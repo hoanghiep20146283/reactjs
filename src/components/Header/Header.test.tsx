@@ -8,31 +8,25 @@ import { MemoryRouter } from 'react-router-dom';
 import { waitFor } from '@testing-library/dom';
 import Header from './Header';
 
-const mockUsedNavigate = jest.fn();
-jest.mock('react-router-dom', () => ({
-  ...jest.requireActual('react-router-dom'),
-  useNavigate: () => mockUsedNavigate,
-}));
-
 const store = configureStore({
-  reducer: rootReducer,
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
+    reducer: rootReducer,
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
 });
 
 const Wrapper = ({ children }) => (
-  <Provider store={store}>{children}</Provider>
+    <Provider store={store}>{children}</Provider>
 );
 
 describe('<Header />', () => {
-  test('it should mount', async () => {
-    render(
-      <MemoryRouter>
-        <Header />
-      </MemoryRouter>,
-      { wrapper: Wrapper });
+    test('it should mount', async () => {
+        render(
+            <MemoryRouter>
+                <Header />
+            </MemoryRouter>,
+            { wrapper: Wrapper });
 
-    const header = await waitFor(() => screen.getByTestId('Header'));
+        const header = await waitFor(() => screen.getByTestId('Header'));
 
-    expect(header).toBeDefined();
-  });
+        expect(header).toBeDefined();
+    });
 });
