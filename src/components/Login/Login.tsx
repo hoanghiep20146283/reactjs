@@ -35,9 +35,9 @@ const Login: FC = () => {
         <FormProvider {...methods}>
           <form onSubmit={methods.handleSubmit(onSubmit)} noValidate>
             <div className={styles.Title}>Email</div>
-            <InputText content='Type your Email..' type='text' name='email' />
+            <InputText content='Type your Email..' type='text' name='email' data-testid='email'/>
             <div className={styles.Title}>Password</div>
-            <InputText content='Type your Password..' type='password' name='password' />
+            <InputText content='Type your Password..' type='password' name='password' data-testid='password'/>
             <Button content='Login' type='submit' />
             <p>
               If you have an account you may <Link to={"/registration"}>Registration</Link>

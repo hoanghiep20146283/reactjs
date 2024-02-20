@@ -9,7 +9,7 @@ function App() {
 	useEffect(() => {
 		const token = localStorage.getItem('bearerToken');
 		console.log(`location.pathname: ${location.pathname}`);
-		if (token && (location.pathname === '/' || location.pathname === '' || location.pathname === '/courses')) {
+		if (token && (location.pathname === '/' || location.pathname === '')) {
 			navigate('/courses');
 		} else if (!token) {
 			navigate('/login');

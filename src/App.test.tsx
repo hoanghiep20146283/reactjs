@@ -49,7 +49,7 @@ describe('<App />', () => {
     test('Should mount logout button', async () => {
         localStorage.setItem('bearerToken', 'test');
         const app = render(
-            <MemoryRouter initialEntries={["/courses"]}>
+            <MemoryRouter initialEntries={["/"]}>
                 <App />
             </MemoryRouter>,
             { wrapper: Wrapper });
@@ -57,6 +57,20 @@ describe('<App />', () => {
         console.log(prettyDOM(app.container));
         const logoutButton = await waitFor(() => screen.getByText('Logout'));
         expect(mockedUseNavigate).toHaveBeenCalledTimes(1);
+        expect(logoutButton).toBeDefined();
+    });
+
+    test('Should not use navigate', async () => {
+        localStorage.setItem('bearerToken', 'test');
+        const app = render(
+            <MemoryRouter initialEntries={["/courses/add"]}>
+                <App />
+            </MemoryRouter>,
+            { wrapper: Wrapper });
+
+        console.log(prettyDOM(app.container));
+        const logoutButton = await waitFor(() => screen.getByText('Logout'));
+        expect(mockedUseNavigate).toHaveBeenCalledTimes(0);
         expect(logoutButton).toBeDefined();
     });
 });
