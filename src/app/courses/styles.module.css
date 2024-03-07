@@ -1,0 +1,137 @@
+.CourseDetail {
+    width: 1440px;
+    height: 1176px;
+    flex-shrink: 0;
+    background: #F7F7F7;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
+    .MainTitle {
+        width: 1125px;
+        color: #333E48;
+        font-size: 32px;
+        font-family: Open Sans;
+        font-weight: 700;
+        text-transform: capitalize;
+        line-height: 40px;
+        word-wrap: break-word;
+    }
+
+    .CourseWrapper {
+        width: 1125px;
+        box-sizing: border-box;
+        height: 375px;
+        background: white;
+        border-radius: 4px;
+        border: 1px #CFCFCF solid;
+        display: flex;
+        flex-direction: row;
+        padding: 2.3rem 0 0 5rem;
+
+        .Description {
+            width: 487px;
+            margin-right: 2rem;
+
+            p:nth-child(2) {
+                text-align: justify;
+            }
+
+            .Title {
+                color: #333E48;
+                font-size: 20px;
+                font-family: Open Sans;
+                font-weight: 700;
+                line-height: 20px;
+                word-wrap: break-word;
+            }
+        }
+
+        .Info {
+            margin-left: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: start;
+
+            .Space {
+                height: 20%;
+            }
+
+            .InfoItem {
+                display: flex;
+                align-items: flex-end;
+                margin: 1rem 0 0 0;
+
+                p {
+                    margin: 0;
+                    padding: 0;
+                }
+
+                .InfoName {
+                    color: #333E48;
+                    font-feature-settings: 'clig' off, 'liga' off;
+                    font-family: Open Sans;
+                    font-size: 20px;
+                    font-style: normal;
+                    font-weight: 700;
+                    line-height: 32px;
+                    width: 100px;
+                    margin-right: 2rem;
+                    /* 160% */
+                    text-transform: capitalize;
+                }
+
+                .InfoValue,
+                .DurationInfo {
+                    color: var(--primary-efx-dark, #333E48);
+                    font-feature-settings: 'clig' off, 'liga' off;
+                    font-family: Open Sans;
+                    font-size: 16px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 32px;
+                    /* 125% */
+                }
+
+                .DurationInfo::first-word {
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+
+    .ButtonWrapper {
+        width: 1125px;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: flex-end;
+        padding: 3rem 0 0 0;
+
+        a {
+            display: flex;
+            width: 185px;
+            height: 50px;
+            box-sizing: border-box;
+            padding: 13px 36px;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+            border-radius: 4px;
+            background: var(--primary-blue, #007298);
+            color: var(--white, #FFF);
+            text-align: center;
+            font-feature-settings: 'clig' off, 'liga' off;
+            text-decoration: none;
+            /* Button/caps */
+            font-family: "Open Sans";
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 24px;
+            /* 150% */
+            text-transform: uppercase;
+        }
+    }
+}
