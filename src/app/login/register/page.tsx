@@ -4,15 +4,13 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import styles from './styles.module.css'
 
-export default function Login() {
+export default function Register() {
     const pathname = usePathname();
     console.log(`usePathName: ${pathname}`);
     return (
         <div>
-            <h2>Login Page</h2>
-            <Link className={styles.Link} href={"/"}>Return to Home page</Link>
-            <br/>
-            <Link className={styles.Link} href={"/login/register"}>Go to Register page</Link>\
+            <h2 className={styles.RegisterTitle}>Register Page</h2>
+            <Link className={styles.RegisterTitle} href={"/"}>Return to Home Page</Link>
         </div>
     );
 }

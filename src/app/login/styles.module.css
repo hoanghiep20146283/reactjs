@@ -1,0 +1,21 @@
+.Title {
+    padding: 0px;
+}
+
+.Link {
+    text-decoration: none;
+}
+
+.Link:visited {
+    text-decoration: none;
+}
+
+.Link:hover {
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.Link:active {
+    text-decoration: underline;
+    font-weight: bold;
+}

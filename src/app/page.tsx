@@ -125,6 +125,7 @@ export default function HomePage() {
             </span>
           </h2>
         </a>
+        <h1 className="text-danger">Bootstrap</h1>
       </div>
     </main>
   );
