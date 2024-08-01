@@ -34,10 +34,6 @@
             width: 487px;
             margin-right: 2rem;
 
-            p:nth-child(2) {
-                text-align: justify;
-            }
-
             .Title {
                 color: #333E48;
                 font-size: 20px;
@@ -62,11 +58,6 @@
                 display: flex;
                 align-items: flex-end;
                 margin: 1rem 0 0 0;
-
-                p {
-                    margin: 0;
-                    padding: 0;
-                }
 
                 .InfoName {
                     color: #333E48;
@@ -107,31 +98,5 @@
         display: flex;
         justify-content: flex-end;
         padding: 3rem 0 0 0;
-
-        a {
-            display: flex;
-            width: 185px;
-            height: 50px;
-            box-sizing: border-box;
-            padding: 13px 36px;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-            flex-shrink: 0;
-            border-radius: 4px;
-            background: var(--primary-blue, #007298);
-            color: var(--white, #FFF);
-            text-align: center;
-            font-feature-settings: 'clig' off, 'liga' off;
-            text-decoration: none;
-            /* Button/caps */
-            font-family: "Open Sans";
-            font-size: 16px;
-            font-style: normal;
-            font-weight: 700;
-            line-height: 24px;
-            /* 150% */
-            text-transform: uppercase;
-        }
     }
 }
